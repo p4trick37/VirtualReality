@@ -8,13 +8,19 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private XRGrabInteractable gun;
     [SerializeField] private Transform head;
-    [SerializeField] private float movementSpeed;
+    public float movementSpeed;
     [SerializeField] private float maxFlySpeed;
     [Header("Hands")]
     [SerializeField] private GameObject leftHand;
     [SerializeField] private GameObject rightHand;
     private Vector3 direction;
     [SerializeField] private Rigidbody rb;
+    [SerializeField] private Collider gunCollider;
+    private void Start()
+    {
+        Collider playerCollider = GetComponent<Collider>();
+        Physics.IgnoreCollision(playerCollider, gunCollider);
+    }
 
     private void Update()
     {
