@@ -43,6 +43,7 @@ public class CombinationLock : MonoBehaviour
                 {
                     //Wrong Answer message or sound
                     Debug.Log("Your combindation failed epically");
+                    numbersEntered = "";
                 }
 
             }
