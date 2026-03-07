@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class KeypadButton : MonoBehaviour
 {
@@ -16,7 +17,7 @@ public class KeypadButton : MonoBehaviour
 
     void Update()
     {
-        if(transform.position.z >= ogPos.z + 0.04 && beenPressed == false)
+        if(transform.position.z <= ogPos.z - 0.04 && beenPressed == false)
         {
             ButtonPressed();
         }
@@ -31,5 +32,6 @@ public class KeypadButton : MonoBehaviour
     {
         beenPressed = true;
         comboLock.button = this;
+        Debug.Log(ButtonName + " has been pushed");
     }
 }

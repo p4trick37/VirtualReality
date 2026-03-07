@@ -42,12 +42,14 @@ public class CombinationLock : MonoBehaviour
                 else
                 {
                     //Wrong Answer message or sound
+                    Debug.Log("Your combindation failed epically");
                 }
 
             }
             else if(numbersEntered.Length < combinationLength)
             {
                 numbersEntered += button.ButtonName;
+                Debug.Log("Number has been pressed");
             }
         }
 
