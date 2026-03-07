@@ -15523,7 +15523,7 @@ MonoBehaviour:
   numbersEntered: 
   needInOrder: 0
   combinationLength: 4
-  door: {fileID: 0}
+  door: {fileID: 1942635527}
 --- !u!1 &1036941405
 GameObject:
   m_ObjectHideFlags: 0
