@@ -52,6 +52,7 @@ public class CombinationLock : MonoBehaviour
         }
 
         button = null;
+        textPanel.text = numbersEntered;
     }
 
     private bool CompareCombinationsInOrder(string userInput, string acutalCombo)
