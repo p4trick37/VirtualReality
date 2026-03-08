@@ -5,8 +5,14 @@ using UnityEngine;
 public class Statue : MonoBehaviour
 {
     [SerializeField] private StatueManager manager;
+    [SerializeField] private Rigidbody rb;
     public bool IsFacing => isFacing;
     private bool isFacing;
+    void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
+
     void Update()
     {
         RaycastHit hit;
@@ -23,5 +29,15 @@ public class Statue : MonoBehaviour
                 isFacing = false;
             }
         }
+    }
+
+    public void FreezeRotation()
+    {
+        rb.freezeRotation = true;
+    }
+
+    public void UnFreezeRotation()
+    {
+        rb.freezeRotation = false;
     }
 }
