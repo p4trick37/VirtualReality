@@ -10048,7 +10048,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
 --- !u!64 &407208871
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -10068,7 +10068,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 1611178239}
 --- !u!33 &407208872
@@ -27615,7 +27615,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5363885366949648618, guid: 0dcddcbecf438a640ab7ed096c86bdf1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.4432704
+      value: -2.226
       objectReference: {fileID: 0}
     - target: {fileID: 5363885366949648618, guid: 0dcddcbecf438a640ab7ed096c86bdf1, type: 3}
       propertyPath: m_LocalPosition.y
