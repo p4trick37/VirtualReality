@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.InteractionLayerSettings
   m_LayerNames:
   - Default
-  - Red
-  - Blue
-  - 
-  - 
-  - 
+  - Square Key
+  - Circle Key
+  - Capsule Key
+  - Cylinder Key
+  - Door Key
   - 
   - 
   - 

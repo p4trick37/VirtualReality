@@ -30,7 +30,6 @@ public class StatueManager : MonoBehaviour
             timer = checkTime;
         }
 
-        Debug.Log(message: facingEachOther);
         if(facingEachOther == true)
         {
             door.ChangeColorGreen();
