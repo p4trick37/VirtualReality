@@ -12,7 +12,6 @@ public class CombinationLock : MonoBehaviour
     [SerializeField] private int combinationLength;
     [SerializeField] private Door door;
     private string numberCombo;
-    private string underlineCombo;
 
     void Start()
     {
@@ -48,7 +47,7 @@ public class CombinationLock : MonoBehaviour
                 }
 
             }
-            else if(numbersEntered.Length < combinationLength)
+            else if(numbersEntered.Length < numberCombo.Length)
             {
                 numbersEntered += button.ButtonName + " ";
             }
