@@ -4419,7 +4419,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 42951d27225031e48ac22fab204b2562, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5467964f2328af34b981dc5826a3f15d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -13126,7 +13126,7 @@ Transform:
   m_GameObject: {fileID: 413152050}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0, z: -0.0242}
+  m_LocalPosition: {x: 0, y: 0, z: -0.0086}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -20472,7 +20472,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ccd0208b68bc6b045a6695f7f44b3cec, type: 3}
+  m_Sprite: {fileID: 21300000, guid: efe4930308acf4b4c8e9f0f0cfaf8acc, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -21700,7 +21700,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1092523882}
   m_Layer: 0
-  m_Name: Hand Attach Point
+  m_Name: Right Attach Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22093,7 +22093,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f1a3424910601414da88d4dfd337dd23, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 260057db44c29604f822c4a1695c7c44, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -23456,7 +23456,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e4254200a7800ff4b90bc2de6241493d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 767c674afc9864440b7169ac116ea70e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -31620,7 +31620,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 902ff74a63c3432439f025e5d36e6c42, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bab7e178401405f478cffcfa7832cb31, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -31650,6 +31650,7 @@ GameObject:
   - component: {fileID: 1789328981}
   - component: {fileID: 1789328980}
   - component: {fileID: 1789328979}
+  - component: {fileID: 1789328983}
   m_Layer: 0
   m_Name: Page 1
   m_TagString: Untagged
@@ -31849,10 +31850,25 @@ Transform:
   m_Children:
   - {fileID: 1596172178}
   - {fileID: 1092523882}
+  - {fileID: 2107478574}
   - {fileID: 904284259}
   - {fileID: 413152051}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 90.27, y: 0, z: 0}
+--- !u!114 &1789328983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1789328978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae17f9036be93bd49b0f5a42fbd17877, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Paragraphs
+  leftAttach: {fileID: 2107478574}
+  rightAttach: {fileID: 1092523882}
 --- !u!1 &1795767495
 GameObject:
   m_ObjectHideFlags: 0
@@ -34253,7 +34269,7 @@ GameObject:
   - component: {fileID: 1994391940}
   m_Layer: 0
   m_Name: Direct Interactor
-  m_TagString: Untagged
+  m_TagString: Left Controller
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -34810,6 +34826,37 @@ Mesh:
       - serializedVersion: 1
         m_IndexStart: 0
         m_IndexCount: 0
+--- !u!1 &2107478573
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2107478574}
+  m_Layer: 0
+  m_Name: Left AttachPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2107478574
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2107478573}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.1248, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1789328982}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2118456734
 GameObject:
   m_ObjectHideFlags: 0
