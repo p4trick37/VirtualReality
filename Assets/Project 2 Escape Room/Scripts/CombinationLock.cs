@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using UnityEditor.ShortcutManagement;
+using System.Linq;
 
 public class CombinationLock : MonoBehaviour
 {
@@ -10,12 +11,13 @@ public class CombinationLock : MonoBehaviour
     [SerializeField] private bool needInOrder;
     [SerializeField] private int combinationLength;
     [SerializeField] private Door door;
-    private string combination;
+    private string numberCombo;
+    private string underlineCombo;
 
     void Start()
     {
         //combination = Combination(combinationLength);
-        combination = "1234";
+        numberCombo = "1 2 3 4 ";
         button = null;
     }
 
@@ -29,12 +31,12 @@ public class CombinationLock : MonoBehaviour
             }
             else if(button.ButtonName.Equals("Enter"))
             {
-                if(CompareCombinationsInOrder(numbersEntered, combination))
+                if(CompareCombinationsInOrder(numbersEntered, numberCombo))
                 {
                     //Do Job
                     door.OpenDoor();
                 }
-                else if(CompareCombinationsOutOrder(numbersEntered, combination) && !needInOrder)
+                else if(CompareCombinationsOutOrder(numbersEntered, numberCombo) && !needInOrder)
                 {
                     //Do Job
                     door.OpenDoor();
@@ -42,15 +44,13 @@ public class CombinationLock : MonoBehaviour
                 else
                 {
                     //Wrong Answer message or sound
-                    Debug.Log("Your combindation failed epically");
                     numbersEntered = "";
                 }
 
             }
             else if(numbersEntered.Length < combinationLength)
             {
-                numbersEntered += button.ButtonName;
-                Debug.Log("Number has been pressed");
+                numbersEntered += button.ButtonName + " ";
             }
         }
 
@@ -97,9 +97,8 @@ public class CombinationLock : MonoBehaviour
         string combination = "";
         for(int i = 0; i < length; i++)
         {
-            combination += Random.Range(0, 10).ToString();
+            combination += Random.Range(0, 10).ToString() + " ";
         }
         return combination;
     }
-
 }
