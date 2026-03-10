@@ -13101,6 +13101,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Statue
   manager: {fileID: 600463767}
   rb: {fileID: 0}
+--- !u!1 &413152050
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 413152051}
+  m_Layer: 0
+  m_Name: Socket Attach Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &413152051
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 413152050}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0, z: -0.0035}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1789328982}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &428677552
 Mesh:
   m_ObjectHideFlags: 0
@@ -20309,7 +20340,7 @@ Transform:
   m_GameObject: {fileID: 904284258}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.052}
+  m_LocalPosition: {x: 0, y: 0, z: -0.0468}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -20331,7 +20362,7 @@ MonoBehaviour:
   m_InteractionLayers:
     m_Bits: 4294967295
   m_Handedness: 0
-  m_AttachTransform: {fileID: 0}
+  m_AttachTransform: {fileID: 413152051}
   m_KeepSelectedTargetValid: 1
   m_DisableVisualsWhenBlockedInGroup: 1
   m_StartingSelectedInteractable: {fileID: 0}
@@ -20382,7 +20413,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.05, y: 0.05, z: 0.05}
+  m_Size: {x: 0.25, y: 0.25, z: 0.08318251}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &909234174
 GameObject:
@@ -21669,7 +21700,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1092523882}
   m_Layer: 0
-  m_Name: Attach Point
+  m_Name: Hand Attach Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31842,7 +31873,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1789328978}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0.7087709, y: 0, z: 0, w: 0.7054388}
   m_LocalPosition: {x: 1.221, y: 0.86499995, z: -0.349}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -31850,8 +31881,9 @@ Transform:
   - {fileID: 1596172178}
   - {fileID: 1092523882}
   - {fileID: 904284259}
+  - {fileID: 413152051}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90.27, y: 0, z: 0}
 --- !u!1 &1795767495
 GameObject:
   m_ObjectHideFlags: 0
@@ -35014,7 +35046,7 @@ Transform:
   m_GameObject: {fileID: 2118456734}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.148, y: 0.913, z: -0.843}
+  m_LocalPosition: {x: 1.148, y: 1.0047, z: -0.843}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
