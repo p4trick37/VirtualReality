@@ -12,10 +12,12 @@ public class Paragraphs : MonoBehaviour
     {
         paragraphGrab = GetComponent<XRGrabInteractable>();
         paragraphGrab.selectEntered.AddListener(OnGrab);
+        paragraphGrab.selectExited.AddListener(OffGrab);
     }
     void OnDisable()
     {
         paragraphGrab.selectEntered.RemoveListener(OnGrab);
+        paragraphGrab.selectExited.RemoveListener(OffGrab);
     }
 
     void OnGrab(SelectEnterEventArgs args)
@@ -23,11 +25,19 @@ public class Paragraphs : MonoBehaviour
         if(args.interactorObject.transform.CompareTag("Left Controller"))
         {
             paragraphGrab.attachTransform = leftAttach;
+            paragraphGrab.secondaryAttachTransform = rightAttach;
         }
         else
         {
             paragraphGrab.attachTransform = rightAttach;
+            paragraphGrab.secondaryAttachTransform = leftAttach;
         }
+    }
+
+    void OffGrab(SelectExitEventArgs args)
+    {
+        paragraphGrab.attachTransform = null;
+        paragraphGrab.secondaryAttachTransform = null;
     }
 
 }
