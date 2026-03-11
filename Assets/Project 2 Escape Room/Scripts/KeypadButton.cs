@@ -31,7 +31,7 @@ public class KeypadButton : MonoBehaviour
     private void ButtonPressed()
     {
         beenPressed = true;
-        comboLock.button = this;
+        comboLock.ButtonPressed(buttonName);
         Debug.Log(ButtonName + " has been pushed");
     }
 }

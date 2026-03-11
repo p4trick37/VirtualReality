@@ -21,38 +21,34 @@ public class CombinationLock : MonoBehaviour
         button = null;
     }
 
-    void Update()
+    public void ButtonPressed(string name)
     {
-        if(button != null)
+       
+        if(name.Equals("Clear"))
         {
-            if(button.ButtonName.Equals("Clear"))
-            {
-                numbersEntered = "";
-            }
-            else if(button.ButtonName.Equals("Enter"))
-            {
-                if(CompareCombinationsInOrder(numbersEntered, numberCombo))
-                {
-                    //Do Job
-                    door.OpenDoor();
-                    Debug.Log("Answer Right");
-                }
-                else
-                {
-                    //Wrong Answer message or sound
-                    numbersEntered = "";
-                    Debug.Log("Answer Wrong");
-                }
-
-            }
-            else if(numbersEntered.Length < numberCombo.Length)
-            {
-                numbersEntered += button.ButtonName + " ";
-                Debug.Log("Button has been Pressed: " + button.ButtonName);
-            }
+            numbersEntered = "";
         }
+        else if(name.Equals("Enter"))
+        {
+            if(CompareCombinationsInOrder(numbersEntered, numberCombo))
+            {
+                //Do Job
+                door.OpenDoor();
+                Debug.Log("Answer Right");
+            }
+            else
+            {
+                //Wrong Answer message or sound
+                numbersEntered = "";
+                Debug.Log("Answer Wrong");
+            }
 
-        button = null;
+        }
+        else if(numbersEntered.Length < numberCombo.Length)
+        {
+            numbersEntered += name + " ";
+            Debug.Log("Button has been Pressed: " + name);
+        }
         textPanel.text = numbersEntered;
         Debug.Log(numbersEntered);
     }
