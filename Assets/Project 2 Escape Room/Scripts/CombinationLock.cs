@@ -12,17 +12,16 @@ public class CombinationLock : MonoBehaviour
     [SerializeField] private Door door;
     private string numberCombo;
 
-    private CreateDigitCombination createCombo;
+    [SerializeField] private CreateDigitCombination createCombo;
 
     void Start()
     {
-        createCombo = GetComponent<CreateDigitCombination>();
-        numberCombo = createCombo.SpacedCombo;
         button = null;
     }
 
     void Update()
     {
+        numberCombo = createCombo.SpacedCombo;
         if(button != null)
         {
             if(button.ButtonName.Equals("Clear"))
@@ -54,6 +53,7 @@ public class CombinationLock : MonoBehaviour
 
         button = null;
         textPanel.text = numbersEntered;
+        Debug.Log(numberCombo);
     }
 
     private bool CompareCombinationsInOrder(string userInput, string acutalCombo)

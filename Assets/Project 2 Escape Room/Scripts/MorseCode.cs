@@ -48,7 +48,6 @@ public class MorseCode : MonoBehaviour
         {
             hasNotStarted = true;
             StartCoroutine(MorseCodeTranslator());
-            Debug.Log(wordMorseCode);
         }
     }
 
@@ -102,6 +101,7 @@ public class MorseCode : MonoBehaviour
                 }
             }
         }
+        
         return codeInMorse;
     }
     

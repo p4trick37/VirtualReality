@@ -26,12 +26,10 @@ public class CubeKeys : MonoBehaviour
         XRGrabInteractable obj = args.interactableObject.transform.GetComponent<XRGrabInteractable>();
         if(obj == null)
         {
-            Debug.Log("Error yea");
         }
         if(obj.gameObject.name.Equals(correctCube.gameObject.name))
         {
             cubeInPlaced = true;
-            Debug.Log("Trueeeeee");
         }
     }
 }
