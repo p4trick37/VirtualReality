@@ -24,12 +24,14 @@ public class LetterLockManager : MonoBehaviour
                 //Do something on activation
                 door.ChangeColorGreen();
                 update = false;
+                Debug.Log("Best Fucking thing ever. succeed, even though door didn't change color. It is door fault");
             }
             else
             {
                 //Do something on fail
                 door.ChangeColorRed();
                 submittedAnswer = false;
+                Debug.Log("Fucking fail, even though door didn't change color. It is door fault");
             }
         }
     }
