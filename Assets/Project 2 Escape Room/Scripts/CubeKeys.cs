@@ -5,7 +5,7 @@ using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
 public class CubeKeys : MonoBehaviour
 {
-    [SerializeField] private GameObject correctCube;
+    [SerializeField] private XRGrabInteractable correctCube;
     [SerializeField] private XRSocketInteractor socket;
     public bool CubeInPlaced => cubeInPlaced;
 
@@ -23,7 +23,8 @@ public class CubeKeys : MonoBehaviour
 
     private void ObjectPlaced(SelectEnterEventArgs args)
     {
-        if(args.interactorObject.transform.gameObject == correctCube)
+        XRGrabInteractable obj = args.interactorObject.transform.GetComponent<XRGrabInteractable>();
+        if(obj.transform.name.Equals(correctCube.transform.name))
         {
             cubeInPlaced = true;
             Debug.Log("Trueeeeee");
