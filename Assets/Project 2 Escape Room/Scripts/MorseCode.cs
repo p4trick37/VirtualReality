@@ -10,32 +10,40 @@ public class MorseCode : MonoBehaviour
     [SerializeField] private float longPauseSeconds;
     [SerializeField] private Color onColor;
     [SerializeField] private Color offColor;
-    
+    [SerializeField] private CombinationLock combinationLock;
+    public bool startMorseCode;
+    private bool hasNotStarted;
 
     private string[] morseCodes = new string[]
     {
-        ".--- .- -.- .", //Jake
-        "-... --- -- -...", //Bomb
-        "-.. .-. ..- --", //Drum
-        "-... .- -. -..", //Band
-        ".--- --- -... ...", //Jobs
-        "- .. -.-. -.-", //Tick
-        ".-- --- .-. -..", //Word
-        "- ..- .-. -.", //Turn
-        ".... ..- -. -", //Hunt
-        "-..- .-. .- -.--", //Xray
+        "-----", //0
+        ".----", //1
+        "..---", //2
+        "...--", //3
+        "....-", //4
+        ".....", //5
+        "-....", //6
+        "--...", //7
+        "---..", //8
+        "----.", //9
     };
-    private int[] morseCodeToNum = new int[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9,};
     private string wordMorseCode;
     private MeshRenderer meshRenderer;
 
     private void Start()
     {
-        //wordMorseCode = RandomizedWord(morseCodes);
-        wordMorseCode = "-... . -..- ..";
+        wordMorseCode = DetermineMorseCode(combinationLock);
         meshRenderer = GetComponent<MeshRenderer>();
-        StartCoroutine(MorseCodeTranslator());
     }
+    private void Update()
+    {
+        if(startMorseCode == true && hasNotStarted == false)
+        {
+            hasNotStarted = true;
+            StartCoroutine(MorseCodeTranslator());
+        }
+    }
+
 
     private IEnumerator MorseCodeTranslator()
     {
@@ -71,9 +79,9 @@ public class MorseCode : MonoBehaviour
         }
     }
 
-    private string RandomizedWord(string[] wordList)
+    private string DetermineMorseCode(CombinationLock comboLock)
     {
-        int randomNumber = Random.Range(0, wordList.Length);
-        return wordList[randomNumber];
+        string morseCombo = comboLock.NotSpacedCombination(comboLock.NumberCombo);
+        return morseCombo;
     }
 }

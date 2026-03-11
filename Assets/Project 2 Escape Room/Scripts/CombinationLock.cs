@@ -6,6 +6,7 @@ using System.Linq;
 public class CombinationLock : MonoBehaviour
 {
     public KeypadButton button;
+    public string NumberCombo => numberCombo;
     [SerializeField] private TMP_Text textPanel;
     [SerializeField] private string numbersEntered = "";
     [SerializeField] private bool needInOrder;
@@ -15,8 +16,7 @@ public class CombinationLock : MonoBehaviour
 
     void Start()
     {
-        //combination = Combination(combinationLength);
-        numberCombo = "1 2 3 4 ";
+        numberCombo = SpacedCombination(combinationLength);
         button = null;
     }
 
@@ -91,12 +91,26 @@ public class CombinationLock : MonoBehaviour
     }
 
 
-    private string Combination(int length)
+    private string SpacedCombination(int length)
     {
         string combination = "";
         for(int i = 0; i < length; i++)
         {
             combination += Random.Range(0, 10).ToString() + " ";
+        }
+        return combination;
+    }
+
+    public string NotSpacedCombination(string combo)
+    {
+        string combination = "";
+        char[] chars = combo.ToCharArray();
+        for(int i = 0; i < chars.Length; i++)
+        {
+            if(!chars[i].Equals(' '))
+            {
+                combination += chars[i];
+            }
         }
         return combination;
     }
