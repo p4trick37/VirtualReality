@@ -20,6 +20,7 @@ public class LetterLock : MonoBehaviour
                 index = 0;
             }
         }
+        Debug.Log("Rotate be atch");
     }
 
     public void Submit()
