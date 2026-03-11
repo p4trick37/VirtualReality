@@ -26,6 +26,7 @@ public class CubeKeys : MonoBehaviour
         if(args.interactorObject.transform.gameObject == correctCube)
         {
             cubeInPlaced = true;
+            Debug.Log("Trueeeeee");
         }
     }
 }

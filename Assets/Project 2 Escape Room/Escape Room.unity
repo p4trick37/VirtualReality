@@ -834,7 +834,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.3, y: 0.25, z: 0}
+  m_Size: {x: 0.34, y: 0.28, z: 0.02}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &33147177
 Transform:
@@ -2532,7 +2532,7 @@ GameObject:
   - component: {fileID: 92121558}
   - component: {fileID: 92121557}
   - component: {fileID: 92121556}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Page 5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3123,7 +3123,7 @@ GameObject:
   - component: {fileID: 114007497}
   - component: {fileID: 114007496}
   - component: {fileID: 114007495}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Blue Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8821,7 +8821,7 @@ GameObject:
   - component: {fileID: 205459777}
   - component: {fileID: 205459779}
   - component: {fileID: 205459778}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15592,7 +15592,7 @@ GameObject:
   - component: {fileID: 391650900}
   - component: {fileID: 391650899}
   - component: {fileID: 391650898}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21420,7 +21420,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 413152051}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Socket Attach Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22345,7 +22345,7 @@ GameObject:
   - component: {fileID: 439363980}
   - component: {fileID: 439363982}
   - component: {fileID: 439363981}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24408,7 +24408,7 @@ GameObject:
   - component: {fileID: 496415407}
   - component: {fileID: 496415409}
   - component: {fileID: 496415408}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Socket Attach Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25254,7 +25254,7 @@ GameObject:
   - component: {fileID: 505710515}
   - component: {fileID: 505710514}
   - component: {fileID: 505710513}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38116,7 +38116,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.3, y: 0.25, z: 0}
+  m_Size: {x: 0.34, y: 0.28, z: 0.02}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &724263572
 Transform:
@@ -38715,7 +38715,7 @@ MonoBehaviour:
   longPauseSeconds: 3
   onColor: {r: 1, g: 0.9451673, b: 0, a: 0}
   offColor: {r: 0, g: 0, b: 0, a: 0}
-  combinationLock: {fileID: 0}
+  combinationLock: {fileID: 1035522593}
   startMorseCode: 0
 --- !u!65 &761851665
 BoxCollider:
@@ -39627,7 +39627,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.3, y: 0.25, z: 0}
+  m_Size: {x: 0.34, y: 0.28, z: 0.02}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &789434244
 Transform:
@@ -41919,7 +41919,7 @@ GameObject:
   - component: {fileID: 904284259}
   - component: {fileID: 904284260}
   - component: {fileID: 904284261}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: socket
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42260,7 +42260,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.3, y: 0.25, z: 0}
+  m_Size: {x: 0.34, y: 0.28, z: 0.02}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &905148185
 GameObject:
@@ -42410,7 +42410,7 @@ GameObject:
   - component: {fileID: 909234175}
   - component: {fileID: 909234177}
   - component: {fileID: 909234176}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42843,7 +42843,7 @@ GameObject:
   - component: {fileID: 942882665}
   - component: {fileID: 942882664}
   - component: {fileID: 942882663}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Cavnas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44449,7 +44449,7 @@ GameObject:
   - component: {fileID: 1022123710}
   - component: {fileID: 1022123709}
   - component: {fileID: 1022123708}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45246,7 +45246,7 @@ GameObject:
   - component: {fileID: 1039386101}
   - component: {fileID: 1039386100}
   - component: {fileID: 1039386099}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47494,7 +47494,7 @@ GameObject:
   - component: {fileID: 1108596171}
   - component: {fileID: 1108596173}
   - component: {fileID: 1108596172}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47780,7 +47780,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.3, y: 0.25, z: 0}
+  m_Size: {x: 0.34, y: 0.28, z: 0.02}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &1111998027
 Transform:
@@ -48633,7 +48633,7 @@ GameObject:
   - component: {fileID: 1166342215}
   - component: {fileID: 1166342217}
   - component: {fileID: 1166342216}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Socket
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48733,7 +48733,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1167946879}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Socket Attach Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49929,7 +49929,7 @@ GameObject:
   - component: {fileID: 1234118198}
   - component: {fileID: 1234118197}
   - component: {fileID: 1234118200}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Key
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -50120,7 +50120,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -50129,7 +50129,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.15, y: 0.15, z: 0.3}
+  m_Size: {x: 0.2, y: 0.17, z: 0.3}
   m_Center: {x: 0, y: 0, z: 0.05}
 --- !u!1 &1236428317
 GameObject:
@@ -50142,7 +50142,7 @@ GameObject:
   - component: {fileID: 1236428318}
   - component: {fileID: 1236428320}
   - component: {fileID: 1236428319}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56288,7 +56288,7 @@ GameObject:
   - component: {fileID: 1276246008}
   - component: {fileID: 1276246007}
   - component: {fileID: 1276246006}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Page 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58555,7 +58555,7 @@ GameObject:
   - component: {fileID: 1392021501}
   - component: {fileID: 1392021500}
   - component: {fileID: 1392021499}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -61798,7 +61798,7 @@ GameObject:
   - component: {fileID: 1564431277}
   - component: {fileID: 1564431276}
   - component: {fileID: 1564431275}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Page 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -62684,7 +62684,7 @@ GameObject:
   - component: {fileID: 1596172177}
   - component: {fileID: 1596172176}
   - component: {fileID: 1596172175}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -62836,7 +62836,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.3, y: 0.25, z: 0}
+  m_Size: {x: 0.34, y: 0.28, z: 0.02}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1600024482
 MonoBehaviour:
@@ -65732,7 +65732,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1730159485}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Socket Attach Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -66972,7 +66972,7 @@ GameObject:
   - component: {fileID: 1787749477}
   - component: {fileID: 1787749479}
   - component: {fileID: 1787749478}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -67049,7 +67049,7 @@ GameObject:
   - component: {fileID: 1789328980}
   - component: {fileID: 1789328979}
   - component: {fileID: 1789328983}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Page 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -67385,7 +67385,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1796493279}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Socket Attach Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -68493,7 +68493,7 @@ GameObject:
   - component: {fileID: 1840692642}
   - component: {fileID: 1840692644}
   - component: {fileID: 1840692643}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Socket
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71796,7 +71796,7 @@ GameObject:
   - component: {fileID: 1964625522}
   - component: {fileID: 1964625521}
   - component: {fileID: 1964625520}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Green Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72064,7 +72064,7 @@ GameObject:
   - component: {fileID: 1968029416}
   - component: {fileID: 1968029415}
   - component: {fileID: 1968029414}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Page 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73911,7 +73911,7 @@ GameObject:
   - component: {fileID: 2007793058}
   - component: {fileID: 2007793057}
   - component: {fileID: 2007793056}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Red Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74815,7 +74815,7 @@ GameObject:
   - component: {fileID: 2041315128}
   - component: {fileID: 2041315130}
   - component: {fileID: 2041315129}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Socket
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75569,7 +75569,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2063764905}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: AttachPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75813,7 +75813,7 @@ GameObject:
   - component: {fileID: 2076924324}
   - component: {fileID: 2076924325}
   - component: {fileID: 2076924326}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Socket
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -76731,7 +76731,7 @@ GameObject:
   - component: {fileID: 2118456737}
   - component: {fileID: 2118456736}
   - component: {fileID: 2118456735}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Key Page
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -77032,7 +77032,7 @@ GameObject:
   - component: {fileID: 2129128589}
   - component: {fileID: 2129128588}
   - component: {fileID: 2129128587}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
