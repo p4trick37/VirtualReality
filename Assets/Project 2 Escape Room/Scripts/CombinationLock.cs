@@ -35,28 +35,26 @@ public class CombinationLock : MonoBehaviour
                 {
                     //Do Job
                     door.OpenDoor();
-                }
-                else if(CompareCombinationsOutOrder(numbersEntered, numberCombo) && !needInOrder)
-                {
-                    //Do Job
-                    door.OpenDoor();
+                    Debug.Log("Answer Right");
                 }
                 else
                 {
                     //Wrong Answer message or sound
                     numbersEntered = "";
+                    Debug.Log("Answer Wrong");
                 }
 
             }
             else if(numbersEntered.Length < numberCombo.Length)
             {
                 numbersEntered += button.ButtonName + " ";
-                Debug.Log("Button has been Pressed: " + button.name);
+                Debug.Log("Button has been Pressed: " + button.ButtonName);
             }
         }
 
         button = null;
         textPanel.text = numbersEntered;
+        Debug.Log(numbersEntered);
     }
 
     private bool CompareCombinationsInOrder(string userInput, string acutalCombo)
@@ -69,6 +67,7 @@ public class CombinationLock : MonoBehaviour
         return false;
     }
 
+/*
     private bool CompareCombinationsOutOrder(string userInput, string acutalCombo)
     {
         char[] charUserInput = userInput.ToCharArray();
@@ -91,4 +90,5 @@ public class CombinationLock : MonoBehaviour
         }
         return true;
     }
+    */
 }
