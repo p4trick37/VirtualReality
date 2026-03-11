@@ -834,7 +834,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.3, y: 0.3, z: 0}
+  m_Size: {x: 0.3, y: 0.25, z: 0}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &33147177
 Transform:
@@ -37553,7 +37553,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.3, y: 0.3, z: 0}
+  m_Size: {x: 0.3, y: 0.25, z: 0}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &724263572
 Transform:
@@ -39062,7 +39062,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.3, y: 0.3, z: 0}
+  m_Size: {x: 0.3, y: 0.25, z: 0}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &789434244
 Transform:
@@ -41695,7 +41695,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.3, y: 0.3, z: 0.07}
+  m_Size: {x: 0.3, y: 0.25, z: 0}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &905148185
 GameObject:
@@ -43293,7 +43293,7 @@ GameObject:
   - component: {fileID: 980900193}
   - component: {fileID: 980900192}
   m_Layer: 0
-  m_Name: a
+  m_Name: ^
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47215,7 +47215,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.3, y: 0.3, z: 0}
+  m_Size: {x: 0.3, y: 0.25, z: 0}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &1111998027
 Transform:
@@ -58458,7 +58458,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.1
+  m_Radius: 0.025
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1459862033
 GameObject:
@@ -61861,7 +61861,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.3, y: 0.3, z: 0}
+  m_Size: {x: 0.3, y: 0.25, z: 0}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1600024482
 MonoBehaviour:
@@ -71574,7 +71574,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.1
+  m_Radius: 0.025
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2004787688
 GameObject:
@@ -75515,7 +75515,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!135 &2132732726
 SphereCollider:
   m_ObjectHideFlags: 0
