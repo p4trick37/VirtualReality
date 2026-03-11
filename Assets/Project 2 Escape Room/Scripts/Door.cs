@@ -17,4 +17,8 @@ public class Door : MonoBehaviour
     {
         gameObject.GetComponent<MeshRenderer>().material.color = Color.gray;
     }
+    public void ChangeColorRed()
+    {
+        gameObject.GetComponent<MeshRenderer>().material.color = Color.red;
+    }
 }
