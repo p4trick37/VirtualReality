@@ -834,7 +834,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.3, y: 0.3, z: 0.04}
+  m_Size: {x: 0.3, y: 0.3, z: 0}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &33147177
 Transform:
@@ -37553,7 +37553,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.3, y: 0.3, z: 0.04}
+  m_Size: {x: 0.3, y: 0.3, z: 0}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &724263572
 Transform:
@@ -39062,7 +39062,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.3, y: 0.3, z: 0.04}
+  m_Size: {x: 0.3, y: 0.3, z: 0}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &789434244
 Transform:
@@ -47215,7 +47215,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.3, y: 0.3, z: 0.04}
+  m_Size: {x: 0.3, y: 0.3, z: 0}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &1111998027
 Transform:
@@ -61861,7 +61861,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.3, y: 0.3, z: 0.04}
+  m_Size: {x: 0.3, y: 0.3, z: 0}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1600024482
 MonoBehaviour:
@@ -75515,7 +75515,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!135 &2132732726
 SphereCollider:
   m_ObjectHideFlags: 0
