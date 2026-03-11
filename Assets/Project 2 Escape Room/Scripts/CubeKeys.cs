@@ -23,8 +23,12 @@ public class CubeKeys : MonoBehaviour
 
     private void ObjectPlaced(SelectEnterEventArgs args)
     {
-        XRGrabInteractable obj = args.interactorObject.transform.GetComponent<XRGrabInteractable>();
-        if(obj.transform.name.Equals(correctCube.transform.name))
+        XRGrabInteractable obj = args.interactableObject.transform.GetComponent<XRGrabInteractable>();
+        if(obj == null)
+        {
+            Debug.Log("Error yea");
+        }
+        if(obj.gameObject.name.Equals(correctCube.gameObject.name))
         {
             cubeInPlaced = true;
             Debug.Log("Trueeeeee");

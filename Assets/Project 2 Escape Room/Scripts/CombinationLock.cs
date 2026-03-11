@@ -10,13 +10,15 @@ public class CombinationLock : MonoBehaviour
     [SerializeField] private TMP_Text textPanel;
     [SerializeField] private string numbersEntered = "";
     [SerializeField] private bool needInOrder;
-    [SerializeField] private int combinationLength;
     [SerializeField] private Door door;
     private string numberCombo;
 
+    private CreateDigitCombination createCombo;
+
     void Start()
     {
-        numberCombo = SpacedCombination(combinationLength);
+        createCombo = GetComponent<CreateDigitCombination>();
+        numberCombo = createCombo.SpacedCombo;
         button = null;
     }
 
@@ -88,30 +90,5 @@ public class CombinationLock : MonoBehaviour
             }
         }
         return true;
-    }
-
-
-    private string SpacedCombination(int length)
-    {
-        string combination = "";
-        for(int i = 0; i < length; i++)
-        {
-            combination += Random.Range(0, 10).ToString() + " ";
-        }
-        return combination;
-    }
-
-    public string NotSpacedCombination(string combo)
-    {
-        string combination = "";
-        char[] chars = combo.ToCharArray();
-        for(int i = 0; i < chars.Length; i++)
-        {
-            if(!chars[i].Equals(' '))
-            {
-                combination += chars[i];
-            }
-        }
-        return combination;
     }
 }

@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
             StartMorseCode();
         }
     }
+
     private bool KeysAreCorrect()
     {
         if(key1.CubeInPlaced == true && key2.CubeInPlaced == true && key3.CubeInPlaced == true)

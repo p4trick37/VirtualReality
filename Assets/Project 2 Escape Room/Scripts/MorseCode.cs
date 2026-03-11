@@ -1,4 +1,6 @@
+using System;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MorseCode : MonoBehaviour
@@ -11,8 +13,10 @@ public class MorseCode : MonoBehaviour
     [SerializeField] private Color onColor;
     [SerializeField] private Color offColor;
     [SerializeField] private CombinationLock combinationLock;
+    [SerializeField] private CreateDigitCombination createdCombo;
+
     public bool startMorseCode;
-    private bool hasNotStarted;
+    private bool hasNotStarted = false;
 
     private string[] morseCodes = new string[]
     {
@@ -32,15 +36,19 @@ public class MorseCode : MonoBehaviour
 
     private void Start()
     {
-        wordMorseCode = DetermineMorseCode(combinationLock);
+        //wordMorseCode = DetermineMorseCode(combinationLock.NumberCombo, morseCodes);
         meshRenderer = GetComponent<MeshRenderer>();
     }
+
     private void Update()
     {
+        wordMorseCode = DetermineMorseCode(createdCombo.ComboArray, morseCodes);
+
         if(startMorseCode == true && hasNotStarted == false)
         {
             hasNotStarted = true;
             StartCoroutine(MorseCodeTranslator());
+            Debug.Log(wordMorseCode);
         }
     }
 
@@ -48,6 +56,7 @@ public class MorseCode : MonoBehaviour
     private IEnumerator MorseCodeTranslator()
     {
         char[] chars = wordMorseCode.ToCharArray();
+        meshRenderer.material.color = offColor;
         yield return new WaitForSeconds(2);
         while(true)
         {
@@ -79,9 +88,23 @@ public class MorseCode : MonoBehaviour
         }
     }
 
-    private string DetermineMorseCode(CombinationLock comboLock)
+    
+    private string DetermineMorseCode(int[] combo, string[] morseCodes)
     {
-        string morseCombo = comboLock.NotSpacedCombination(comboLock.NumberCombo);
-        return morseCombo;
+        string codeInMorse = "";
+        for(int i = 0; i < combo.Length; i++)
+        {
+            for(int j = 0; j < morseCodes.Length; j++)
+            {
+                if(combo[i] == j)
+                {
+                    codeInMorse += morseCodes[j] + " ";
+                }
+            }
+        }
+        return codeInMorse;
     }
+    
+
+  
 }
