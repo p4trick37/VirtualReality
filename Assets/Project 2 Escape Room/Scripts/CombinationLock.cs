@@ -21,36 +21,39 @@ public class CombinationLock : MonoBehaviour
         button = null;
     }
 
-    public void ButtonPressed(string name)
+    void Update()
     {
-       
-        if(name.Equals("Clear"))
+        if(button != null)
         {
-            numbersEntered = "";
-        }
-        else if(name.Equals("Enter"))
-        {
-            if(CompareCombinationsInOrder(numbersEntered, numberCombo))
+            if(button.ButtonName.Equals("Clear"))
             {
-                //Do Job
-                door.OpenDoor();
-                Debug.Log("Answer Right");
-            }
-            else
-            {
-                //Wrong Answer message or sound
                 numbersEntered = "";
-                Debug.Log("Answer Wrong");
             }
+            else if(button.ButtonName.Equals("Enter"))
+            {
+                if(CompareCombinationsInOrder(numbersEntered, numberCombo))
+                {
+                    //Do Job
+                    door.OpenDoor();
+                    Debug.Log("Answer Right");
+                }
+                else
+                {
+                    //Wrong Answer message or sound
+                    numbersEntered = "";
+                    Debug.Log("Answer Wrong");
+                }
 
+            }
+            else 
+            {
+                numbersEntered += button.ButtonName + " ";
+                Debug.Log("Button has been Pressed: " + button.ButtonName);
+            }
         }
-        else if(numbersEntered.Length < numberCombo.Length)
-        {
-            numbersEntered += name + " ";
-            Debug.Log("Button has been Pressed: " + name);
-        }
+
+        button = null;
         textPanel.text = numbersEntered;
-        Debug.Log(numbersEntered);
     }
 
     private bool CompareCombinationsInOrder(string userInput, string acutalCombo)
