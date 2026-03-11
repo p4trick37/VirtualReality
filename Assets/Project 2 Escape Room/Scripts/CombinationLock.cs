@@ -1,7 +1,6 @@
 using UnityEngine;
 using TMPro;
-using UnityEditor.ShortcutManagement;
-using System.Linq;
+
 
 public class CombinationLock : MonoBehaviour
 {
@@ -52,6 +51,7 @@ public class CombinationLock : MonoBehaviour
             else if(numbersEntered.Length < numberCombo.Length)
             {
                 numbersEntered += button.ButtonName + " ";
+                Debug.Log("Button has been Pressed: " + button.name);
             }
         }
 
