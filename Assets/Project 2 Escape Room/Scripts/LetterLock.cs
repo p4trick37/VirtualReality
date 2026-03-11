@@ -7,7 +7,7 @@ public class LetterLock : MonoBehaviour
     [SerializeField] private LetterLockManager manager;
     private char[] letterOptions = new char[]{'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'};
     private int index;
-    private bool shouldRotate;
+    private bool shouldRotate = false;
     [SerializeField] private float rotationSpeed;
     private float currentRotation;
     private float targetRotation;
@@ -15,19 +15,28 @@ public class LetterLock : MonoBehaviour
     void Start()
     {
         currentRotation = 0;
-        targetRotation = -45;
+        targetRotation = 315;
     }
 
     void Update()
     {
         if(shouldRotate == true)
         {
+            if(targetRotation < 0)
+            {
+                targetRotation = 315; 
+            }
             transform.Rotate(0, 0, -rotationSpeed * Time.deltaTime);
-            if(transform.rotation.z < targetRotation)
+            if(transform.eulerAngles.z < targetRotation || (targetRotation == 0 && transform.eulerAngles.z > 315))
             {
                 transform.rotation = Quaternion.Euler(0, 0, targetRotation);   
                 currentRotation = targetRotation;
                 targetRotation -= 45;
+                index++;
+                if(index == letterOptions.Length)
+                {
+                    index = 0;
+                }
                 shouldRotate = false;
             }
         }
@@ -39,13 +48,7 @@ public class LetterLock : MonoBehaviour
         if(manager.submittedAnswer == false)
         {
             shouldRotate = true;
-            index++;
-            if(index == letterOptions.Length)
-            {
-                index = 0;
-            }
         }
-        Debug.Log("Rotate be atch");
     }
 
     public void Submit()
