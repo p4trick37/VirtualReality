@@ -13,6 +13,7 @@ public class CombinationLock : MonoBehaviour
     private string numberCombo;
 
     [SerializeField] private CreateDigitCombination createCombo;
+    [SerializeField] private GameObject spawnKey;
 
     void Start()
     {
@@ -33,7 +34,7 @@ public class CombinationLock : MonoBehaviour
                 if(CompareCombinationsInOrder(numbersEntered, numberCombo))
                 {
                     //Do Job
-                    door.OpenDoor();
+                    spawnKey.SetActive(true);
                     Debug.Log("Answer Right");
                 }
                 else
@@ -53,7 +54,6 @@ public class CombinationLock : MonoBehaviour
 
         button = null;
         textPanel.text = numbersEntered;
-        Debug.Log(numberCombo);
     }
 
     private bool CompareCombinationsInOrder(string userInput, string acutalCombo)
@@ -65,29 +65,4 @@ public class CombinationLock : MonoBehaviour
         
         return false;
     }
-
-/*
-    private bool CompareCombinationsOutOrder(string userInput, string acutalCombo)
-    {
-        char[] charUserInput = userInput.ToCharArray();
-        char[] charCombination = acutalCombo.ToCharArray();
-        for(int i = 0; i < charUserInput.Length; i++)
-        {
-            bool isInArray = false;
-            for(int j = 0; j < charCombination.Length; j++)
-            {
-                if(charUserInput[i].Equals(charCombination[j]))
-                {
-                    isInArray = true;
-                }
-            }
-
-            if(isInArray == false)
-            {
-                return false;
-            }
-        }
-        return true;
-    }
-    */
 }

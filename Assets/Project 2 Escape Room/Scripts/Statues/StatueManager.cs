@@ -8,7 +8,12 @@ public class StatueManager : MonoBehaviour
     [SerializeField] private float checkTime;
     private float timer;
     private bool facingEachOther;
-    [SerializeField] private Door door;
+    
+    [SerializeField] private GameObject cubePickup;
+    [SerializeField] private GameObject cubeDisplay;
+    [SerializeField] private GameObject pagePickup;
+    [SerializeField] private GameObject pageDisplay;
+    [SerializeField] private GameObject droorerDoor;
 
     void Start()
     {
@@ -32,11 +37,11 @@ public class StatueManager : MonoBehaviour
 
         if(facingEachOther == true)
         {
-            door.ChangeColorGreen();
-        }
-        else
-        {
-            door.ChangeColorGray();
+            cubePickup.SetActive(true);
+            cubeDisplay.SetActive(false);
+            pagePickup.SetActive(true);
+            pageDisplay.SetActive(false);
+            droorerDoor.SetActive(false);
         }
     }
 

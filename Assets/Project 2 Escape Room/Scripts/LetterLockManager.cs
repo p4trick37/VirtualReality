@@ -8,7 +8,10 @@ public class LetterLockManager : MonoBehaviour
     [SerializeField] private LetterLock letter3;
     [SerializeField] private LetterLock letter4;
     [SerializeField] private LetterLock letter5;
-    [SerializeField] private Door door;
+
+    [SerializeField] private GameObject cubeDisplay;
+    [SerializeField] private GameObject cubeInteractable;
+    [SerializeField] private GameObject droorerDoor;
 
     private string answer = "acdaf";
     public bool submittedAnswer = false;
@@ -22,16 +25,15 @@ public class LetterLockManager : MonoBehaviour
             if(CheckForAnswer() == true)
             {
                 //Do something on activation
-                door.ChangeColorGreen();
+                cubeDisplay.SetActive(false);
+                cubeInteractable.SetActive(true);
+                droorerDoor.SetActive(false);
                 update = false;
-                Debug.Log("Best Fucking thing ever. succeed, even though door didn't change color. It is door fault");
             }
             else
             {
                 //Do something on fail
-                door.ChangeColorRed();
                 submittedAnswer = false;
-                Debug.Log("Fucking fail, even though door didn't change color. It is door fault");
             }
         }
     }

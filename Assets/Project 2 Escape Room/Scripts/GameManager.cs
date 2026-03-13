@@ -1,5 +1,9 @@
+using System.Net.Sockets;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.XR.Interaction.Toolkit.Interactables;
+using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,6 +13,10 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private MorseCode morseCode;
     [SerializeField] private CombinationLock comboLock;
+
+    [SerializeField] private XRSocketInteractor keyInsert;
+    [SerializeField] private GameObject door;
+
 
 
     void Update()
@@ -31,6 +39,21 @@ public class GameManager : MonoBehaviour
     private void StartMorseCode()
     {
         morseCode.startMorseCode = true;
+    }
+
+    private void OnEnable()
+    {
+        keyInsert.selectEntered.AddListener(OnKeyInDoor);
+        
+    }
+    private void OnDisable()
+    {
+        keyInsert.selectEntered.RemoveListener(OnKeyInDoor);
+    }
+
+    private void OnKeyInDoor(SelectEnterEventArgs args)
+    {
+        door.SetActive(false);
     }
 
 

@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class NumToBinCode : MonoBehaviour
 {
-    private int numbCode;
+    private int numberCode;
     private string binaryCode;
     [SerializeField] private TMP_Text binaryCodeShown;
     [SerializeField] private int binarySize;
@@ -11,6 +11,7 @@ public class NumToBinCode : MonoBehaviour
     void Start()
     {
         binaryCode = randomBinaryCode(binarySize);
+        numberCode = BinToNum(binaryCode);
         binaryCodeShown.text = binaryCode;
     }
 
