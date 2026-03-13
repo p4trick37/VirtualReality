@@ -11,7 +11,9 @@ public class LetterLockManager : MonoBehaviour
 
     [SerializeField] private GameObject cubeDisplay;
     [SerializeField] private GameObject cubeInteractable;
-    [SerializeField] private GameObject droorerDoor;
+    [SerializeField] private Door door1;
+    [SerializeField] private Door door2;
+    [SerializeField] private GameObject letterLock;
 
     private string answer = "acdaf";
     public bool submittedAnswer = false;
@@ -27,7 +29,9 @@ public class LetterLockManager : MonoBehaviour
                 //Do something on activation
                 cubeDisplay.SetActive(false);
                 cubeInteractable.SetActive(true);
-                droorerDoor.SetActive(false);
+                door1.isLocked = false;
+                door2.isLocked = false;
+                letterLock.SetActive(false);
                 update = false;
             }
             else
