@@ -38,6 +38,7 @@ public class Statue : MonoBehaviour
 
         if(statueGrabbed == true)
         {
+            Debug.Log("In update, the statuegrabbed bool ran the code");
             transform.rotation = Quaternion.Euler(0, AngleToInteractor(interactor.position, transform.position), 0);
         }
     }
@@ -46,12 +47,14 @@ public class Statue : MonoBehaviour
     {
         rb.freezeRotation = true;
         statueGrabbed = false;
+        Debug.Log("Hand has been released");
     }
 
     public void OnGrab()
     { 
         rb.freezeRotation = false;
         statueGrabbed = true;
+        Debug.Log("Hand as been grabbed");
     }
 
     private void OnEnable()
@@ -66,6 +69,8 @@ public class Statue : MonoBehaviour
     private void OnInteraction(SelectEnterEventArgs args)
     {
         interactor = args.interactorObject.transform;
+        Debug.Log("I think interactor has been set I think");
+        Debug.Log("This is the interactor: " + interactor.name);
     }
 
     private float AngleToInteractor(Vector3 interactor, Vector3 stationaryObj)
@@ -90,6 +95,7 @@ public class Statue : MonoBehaviour
                 angle += 180;
             }
         }
+        Debug.Log("This is the angle where it is: " + angle);
         return angle;
     }
 
