@@ -13,7 +13,7 @@ public class Statue : MonoBehaviour
     private bool statueGrabbed;
     private XRGrabInteractable item;
     private Transform interactor; 
-    void Start()
+    void Awake()
     {
         rb = GetComponent<Rigidbody>();
         item = GetComponent<XRGrabInteractable>();
@@ -64,6 +64,7 @@ public class Statue : MonoBehaviour
     private void OnDisable()
     {
         item.selectEntered.RemoveListener(OnInteraction);
+        
     }
 
     private void OnInteraction(SelectEnterEventArgs args)
