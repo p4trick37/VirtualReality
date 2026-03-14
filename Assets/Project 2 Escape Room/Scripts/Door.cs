@@ -42,17 +42,17 @@ public class Door : MonoBehaviour
             if(targetRotation < 0)
             {
                 previousAngle = AngleToInteractor(interactor.position, transform.position) + 90;
-                transform.rotation = Quaternion.Euler(0, angle, 0);
+                transform.localRotation = Quaternion.Euler(0, angle, 0);
             }
             else
             {
                 previousAngle = AngleToInteractor(interactor.position, transform.position) - 90;
-                transform.rotation = Quaternion.Euler(0, angle, 0);
+                transform.localRotation = Quaternion.Euler(0, angle, 0);
             } 
     }
         else if(initialFreeze == false)
         {
-            transform.rotation = Quaternion.Euler(0, angle, 0);
+            transform.localRotation = Quaternion.Euler(0, angle, 0);
         }
     }
 
