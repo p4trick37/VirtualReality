@@ -4,55 +4,54 @@ using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
-public class Door : MonoBehaviour
+public class DoorTest : MonoBehaviour
 {
 
     [SerializeField] private float targetRotation;
+    [SerializeField] private Transform parentObj;
+    [SerializeField] private Transform hand;
     public bool isLocked;
     private XRGrabInteractable door;
     private Transform interactor;
-    private bool moveDoor = false;
+    private bool moveDoor = true;
     private Vector3 ogPos;
     private float previousAngle;
     private float angle;
     private bool initialFreeze = true;
 
+
+
     private void Awake()
     {
         door = GetComponent<XRGrabInteractable>();
         ogPos = transform.position;
+        initialFreeze = true;
     }
 
-    private void OnEnable()
-    {
-        door.selectEntered.AddListener(OpenCloseDoor);
-        door.selectExited.AddListener(FreezeDoor);
-    }
-    private void OnDisable()
-    {
-        door.selectEntered.RemoveListener(OpenCloseDoor);
-        door.selectExited.RemoveListener(FreezeDoor);
-    }
 
     private void Update()
     {
+        
         transform.position = ogPos;
         if(moveDoor == true && isLocked == false)
         {
+            initialFreeze = false;
             if(targetRotation < 0)
             {
-                previousAngle = AngleToInteractor(interactor.position, transform.position) + 90;
-                transform.rotation = Quaternion.Euler(0, angle, 0);
+                previousAngle = AngleToInteractor(hand.position, transform.position) + 90;
+                //angle = Mathf.Clamp(previousAngle, targetRotation, 0);
+                transform.rotation = Quaternion.Euler(0, previousAngle, 0);
             }
             else
             {
-                previousAngle = AngleToInteractor(interactor.position, transform.position) - 90;
-                transform.rotation = Quaternion.Euler(0, angle, 0);
-            } 
-    }
+                previousAngle = AngleToInteractor(hand.position, transform.position) - 90;
+                //angle = Mathf.Clamp(previousAngle, 0, targetRotation);
+                transform.rotation = Quaternion.Euler(0, previousAngle, 0);
+            }
+        }
         else if(initialFreeze == false)
         {
-            transform.rotation = Quaternion.Euler(0, angle, 0);
+            transform.rotation = Quaternion.Euler(0, previousAngle, 0);
         }
     }
 
@@ -90,7 +89,6 @@ public class Door : MonoBehaviour
                 angle += 180;
             }
         }
-        Debug.Log("This is the angle where it is: " + angle);
         return angle;
     }
 }

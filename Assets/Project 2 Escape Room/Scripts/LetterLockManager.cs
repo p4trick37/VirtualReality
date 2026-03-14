@@ -14,6 +14,8 @@ public class LetterLockManager : MonoBehaviour
     [SerializeField] private Door door1;
     [SerializeField] private Door door2;
     [SerializeField] private GameObject letterLock;
+    [SerializeField] private GameObject handle1;
+    [SerializeField] private GameObject handle2;
 
     private string answer = "acdaf";
     public bool submittedAnswer = false;
@@ -32,6 +34,8 @@ public class LetterLockManager : MonoBehaviour
                 door1.isLocked = false;
                 door2.isLocked = false;
                 letterLock.SetActive(false);
+                handle1.SetActive(true);
+                handle2.SetActive(true);
                 update = false;
             }
             else
