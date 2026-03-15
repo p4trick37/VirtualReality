@@ -1,7 +1,30 @@
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.XR.Interaction.Toolkit.Interactables;
+using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
-public class Hand : MonoBehaviour
+public class PagePickup : MonoBehaviour
 {
-    public string PlayerHand => playerHand;
-    [SerializeField] private string playerHand;
+    private XRGrabInteractable page;
+    private GameObject hand;
+
+    void Awake()
+    {
+        page = GetComponent<XRGrabInteractable>();
+    }
+
+    private void OnEnable()
+    {
+        page.selectEntered.AddListener(SetTransform);
+        
+    }
+    private void OnDisable()
+    {
+        page.selectEntered.RemoveListener(SetTransform);
+    }
+
+    private void SetTransform(SelectEnterEventArgs args)
+    {
+        hand = args.interactorObject.transform.gameObject;
+    }
 }

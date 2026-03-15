@@ -11,8 +11,8 @@ public class LetterLockManager : MonoBehaviour
 
     [SerializeField] private GameObject cubeDisplay;
     [SerializeField] private GameObject cubeInteractable;
-    [SerializeField] private Door door1;
-    [SerializeField] private Door door2;
+    [SerializeField] private DoorTest door1;
+    [SerializeField] private DoorTest door2;
     [SerializeField] private GameObject letterLock;
     [SerializeField] private GameObject handle1;
     [SerializeField] private GameObject handle2;
@@ -33,10 +33,10 @@ public class LetterLockManager : MonoBehaviour
                 cubeInteractable.SetActive(true);
                 door1.isLocked = false;
                 door2.isLocked = false;
-                letterLock.SetActive(false);
                 handle1.SetActive(true);
                 handle2.SetActive(true);
                 update = false;
+                letterLock.SetActive(false);
             }
             else
             {

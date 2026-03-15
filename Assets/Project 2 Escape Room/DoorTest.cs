@@ -4,6 +4,8 @@ using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
+    
+
 public class DoorTest : MonoBehaviour
 {
 
@@ -28,6 +30,18 @@ public class DoorTest : MonoBehaviour
         initialFreeze = true;
     }
 
+    private void OnEnable()
+    {
+        door.selectEntered.AddListener(OpenCloseDoor);
+        door.selectExited.AddListener(FreezeDoor);
+    }
+
+    private void OnDisable()
+    {
+        door.selectEntered.RemoveListener(OpenCloseDoor);
+        door.selectExited.RemoveListener(FreezeDoor);
+    }
+
 
     private void Update()
     {
@@ -38,13 +52,13 @@ public class DoorTest : MonoBehaviour
             initialFreeze = false;
             if(targetRotation < 0)
             {
-                previousAngle = AngleToInteractor(hand.position, transform.position) + 90;
+                previousAngle = AngleToInteractor(interactor.position, transform.position) + 90;
                 //angle = Mathf.Clamp(previousAngle, targetRotation, 0);
                 transform.rotation = Quaternion.Euler(0, previousAngle, 0);
             }
             else
             {
-                previousAngle = AngleToInteractor(hand.position, transform.position) - 90;
+                previousAngle = AngleToInteractor(interactor.position, transform.position) - 90;
                 //angle = Mathf.Clamp(previousAngle, 0, targetRotation);
                 transform.rotation = Quaternion.Euler(0, previousAngle, 0);
             }
