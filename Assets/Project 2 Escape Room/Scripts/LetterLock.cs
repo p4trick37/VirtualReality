@@ -12,6 +12,8 @@ public class LetterLock : MonoBehaviour
     private float currentRotation;
     private float targetRotation;
 
+    [SerializeField] private AudioSource audi;
+
     void Start()
     {
         currentRotation = 0;
@@ -49,6 +51,7 @@ public class LetterLock : MonoBehaviour
         {
             shouldRotate = true;
         }
+        audi.Play();
     }
 
     public void Submit()

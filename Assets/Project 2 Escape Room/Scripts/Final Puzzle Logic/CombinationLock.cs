@@ -15,6 +15,8 @@ public class CombinationLock : MonoBehaviour
     [SerializeField] private CreateDigitCombination createCombo;
     [SerializeField] private GameObject spawnKey;
 
+    [SerializeField] private AudioSource audi;
+
     void Start()
     {
         button = null;
@@ -35,6 +37,7 @@ public class CombinationLock : MonoBehaviour
                 {
                     //Do Job
                     spawnKey.SetActive(true);
+                    audi.Play();
                     Debug.Log("Answer Right");
                 }
                 else

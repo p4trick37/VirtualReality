@@ -9,6 +9,8 @@ public class KeypadButton : MonoBehaviour
     private CombinationLock comboLock;
 
     [SerializeField] private string buttonName;
+
+    [SerializeField] private AudioSource audi;
     void Start()
     {
         ogPos = transform.position;
@@ -17,9 +19,10 @@ public class KeypadButton : MonoBehaviour
 
     void Update()
     {
-        if(transform.position.z <= ogPos.z - 0.04 && beenPressed == false)
+        if(transform.position.x >= ogPos.x + 0.04 && beenPressed == false)
         {
             ButtonPressed();
+            audi.Play();
         }
 
         if(transform.position == ogPos)

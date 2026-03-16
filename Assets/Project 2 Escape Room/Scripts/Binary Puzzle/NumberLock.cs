@@ -15,6 +15,8 @@ public class NumberLock : MonoBehaviour
     [SerializeField] private GameObject cubePickup;
     [SerializeField] private GameObject cubeDisplay;
     [SerializeField] private GameObject droorerDoor;
+
+    [SerializeField] private AudioSource audi;
     
 
     void Start()
@@ -41,6 +43,7 @@ public class NumberLock : MonoBehaviour
                     cubePickup.SetActive(true);
                     cubeDisplay.SetActive(false);
                     droorerDoor.SetActive(false);
+                    audi.Play();
                     Debug.Log("Answer Right");
                 }
                 else

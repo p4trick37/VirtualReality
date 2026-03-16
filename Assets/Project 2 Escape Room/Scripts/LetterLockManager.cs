@@ -20,6 +20,8 @@ public class LetterLockManager : MonoBehaviour
     private string answer = "acdaf";
     public bool submittedAnswer = false;
     private bool update = true;
+
+    [SerializeField] private AudioSource audi;
     //Answer is acdaf
 
     void Update()
@@ -29,6 +31,8 @@ public class LetterLockManager : MonoBehaviour
             if(CheckForAnswer() == true)
             {
                 //Do something on activation
+                audi.Play();
+                
                 cubeDisplay.SetActive(false);
                 cubeInteractable.SetActive(true);
                 door1.isLocked = false;

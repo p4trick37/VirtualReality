@@ -15,6 +15,9 @@ public class StatueManager : MonoBehaviour
     [SerializeField] private GameObject pageDisplay;
     [SerializeField] private GameObject droorerDoor;
 
+    [SerializeField] private AudioSource audi;
+    private bool playAudiOnce = false;
+
     void Start()
     {
         timer = checkTime;
@@ -28,6 +31,11 @@ public class StatueManager : MonoBehaviour
             if(timer <= 0)
             {
                 facingEachOther = true;
+                if(playAudiOnce == false)
+                {
+                    audi.Play();
+                    playAudiOnce = true;
+                }
             }
         }
         else

@@ -17,6 +17,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private XRSocketInteractor keyInsert;
     [SerializeField] private GameObject door;
 
+    [SerializeField] private AudioSource audiExplode;
+    [SerializeField] private AudioSource audiKeyTable;
+
 
 
     void Update()
@@ -31,6 +34,7 @@ public class GameManager : MonoBehaviour
     {
         if(key1.CubeInPlaced == true && key2.CubeInPlaced == true && key3.CubeInPlaced == true)
         {
+            audiKeyTable.Play();
             return true;
         }
         return false;
@@ -53,6 +57,7 @@ public class GameManager : MonoBehaviour
 
     private void OnKeyInDoor(SelectEnterEventArgs args)
     {
+        audiExplode.Play();
         door.SetActive(false);
     }
 

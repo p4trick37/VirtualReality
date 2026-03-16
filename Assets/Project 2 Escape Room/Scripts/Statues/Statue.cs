@@ -36,6 +36,7 @@ public class Statue : MonoBehaviour
             }
         }
 
+
         if(statueGrabbed == true)
         {
             Debug.Log("In update, the statuegrabbed bool ran the code");
