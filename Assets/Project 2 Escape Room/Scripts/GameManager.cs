@@ -20,13 +20,22 @@ public class GameManager : MonoBehaviour
     [SerializeField] private AudioSource audiExplode;
     [SerializeField] private AudioSource audiKeyTable;
 
+    private bool playedAudio = false;
+
 
 
     void Update()
     {
+
         if(KeysAreCorrect())
         {
+            if(playedAudio == false)
+            {
+                playedAudio = true;
+                audiKeyTable.Play();
+            }
             StartMorseCode();
+
         }
     }
 
@@ -34,7 +43,6 @@ public class GameManager : MonoBehaviour
     {
         if(key1.CubeInPlaced == true && key2.CubeInPlaced == true && key3.CubeInPlaced == true)
         {
-            audiKeyTable.Play();
             return true;
         }
         return false;
