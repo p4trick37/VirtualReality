@@ -7,9 +7,12 @@ namespace FinalProject
 {
     public class EnemySpawner : MonoBehaviour
     {
+        [Header("Enemy Prefabs")]
+        [SerializeField] private GameObject walkerPrefab;
+        [SerializeField] private GameObject crawlerPrefab;
+        [SerializeField] private GameObject flyerPrefab;
         [Header("Spawning")]
         [SerializeField] private float spawnRate;
-        [SerializeField] private GameObject enemyPrefab;
         [SerializeField] private float minRadius;
         [SerializeField] private float maxRadius;
         [SerializeField] private Camera playerCamera;
@@ -61,7 +64,7 @@ namespace FinalProject
             spawnTimer -= Time.deltaTime;
             if (spawnTimer <= 0)
             {
-                GameObject objEnemy = Instantiate(enemyPrefab, RandomLocation(), Quaternion.identity);
+                GameObject objEnemy = Instantiate(walkerPrefab, RandomLocation(), Quaternion.identity);
                 enemies.Add(objEnemy.GetComponent<Enemy>());
                 spawnTimer = spawnRate;
                 enemiesSpawned++;
