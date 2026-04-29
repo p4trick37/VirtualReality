@@ -3,6 +3,8 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 using System.Collections.Generic;
+using System.Xml.Serialization;
+using UnityEditor;
 namespace FinalProject
 {
     public class EnemySpawner : MonoBehaviour
@@ -32,14 +34,16 @@ namespace FinalProject
         {
             spawnTimer = spawnRate;
             spawnWave = true;
+            enemiesSpawned = 0;
         }
+
         private void Update()
         {
             if(spawnWave == true)
             {
                 int enemiesToSpawn = EnemiesToSpawn(waveManager.Wave);
                 waveAlreadyCompleted = false;
-                SpawnEnemies(enemiesToSpawn);
+                SpawnEnemies(SpawnOrder(enemiesToSpawn, waveManager.NumOfFlyersSpawn()));
             }
 
             if(CheckForWaveCompleted() == true)
@@ -59,18 +63,27 @@ namespace FinalProject
             return location;
         }
 
-        private void SpawnEnemies(int enemiesToSpawn)
+        private void SpawnEnemies(string[] enemyOrder)
         {
             spawnTimer -= Time.deltaTime;
             if (spawnTimer <= 0)
             {
-                GameObject objEnemy = Instantiate(walkerPrefab, RandomLocation(), Quaternion.identity);
+                GameObject objEnemy;
+                if (enemyOrder[enemiesSpawned].Equals("Flyer"))
+                {
+                    objEnemy = Instantiate(flyerPrefab, RandomLocation(), Quaternion.identity);
+                }
+                else
+                {
+                    objEnemy = Instantiate(walkerPrefab, RandomLocation(), Quaternion.identity);
+                }
+
                 enemies.Add(objEnemy.GetComponent<Enemy>());
                 spawnTimer = spawnRate;
                 enemiesSpawned++;
             }
 
-            if (enemiesSpawned >= enemiesToSpawn)
+            if (enemiesSpawned >= enemyOrder.Length)
             {
                 spawnWave = false;
             }
@@ -115,6 +128,52 @@ namespace FinalProject
             {
                 enemies.RemoveAt(i);
             }
+        }
+
+        public string[] SpawnOrder(int enemiesToSpawn)
+        {
+            string[] enemies = new string[enemiesToSpawn];
+            for(int i = 0; i < enemies.Length; i++)
+            {
+                enemies[i] = "Walker";
+            }
+            return enemies;
+        }
+
+        public string[] SpawnOrder(int enemiesToSpawn, int numToSpawn)
+        {
+            string[] enemies = new string[enemiesToSpawn];
+            int[] randomPositions = new int[numToSpawn];
+            List<int> positions = new List<int>();
+            for(int i = 0; i < enemiesToSpawn; i++)
+            {
+                positions.Add(i);
+            }
+
+            for(int i = 0; i < randomPositions.Length; i++)
+            {
+                int randomIndex = Random.Range(0, positions.Count);
+                randomPositions[i] = positions[randomIndex];
+                positions.RemoveAt(randomIndex);
+            }
+
+            for(int i = 0; i < enemies.Length; i++)
+            {
+                enemies[i] = "Walker";
+            }
+
+            for(int i = 0; i < enemies.Length; i++)
+            {
+                for(int j = 0; j < randomPositions.Length; j++)
+                {
+                    if (i == randomPositions[j])
+                    {
+                        enemies[i] = "Flyer";
+                    }
+                }
+            }
+
+            return enemies;
         }
     }
 }

@@ -9,7 +9,13 @@ namespace FinalProject
         private float attackTimer;
         private void Update()
         {
+            if (autoKill == true)
+            {
+                AutoKill();
+            }
+
             FindEnemy();
+            
 
             if(PositionToAttack())
             {
@@ -19,7 +25,8 @@ namespace FinalProject
             {
                 MoveTowardPlayer();
             }
-            Debug.Log(foundEnemy);
+
+            CheckForHealth();
         }
 
         private bool PositionToAttack()

@@ -25,7 +25,6 @@ namespace FinalProject
         {
             wave++;
             enemySpawner.ClearList();
-            enemySpawner.ClearList();
             yield return new WaitForSeconds(waveDelay);
             waveCompleted = false;
             enemySpawner.StartWave();
@@ -36,5 +35,15 @@ namespace FinalProject
             waveCompleted = true;
         }
 
+        public int NumOfFlyersSpawn()
+        {
+            float floatNum = (float)(1 + (wave - 1) * 0.5f);
+            int numToSpawn = Mathf.FloorToInt(floatNum);
+            if(wave < 3 )
+            {
+                numToSpawn = 0;
+            }
+            return numToSpawn;
+        }
     }
 }

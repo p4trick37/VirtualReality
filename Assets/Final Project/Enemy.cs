@@ -4,31 +4,26 @@ namespace FinalProject
 {
     public class Enemy : MonoBehaviour
     {
-        [SerializeField] private float moveSpeed;
+        [SerializeField] protected float moveSpeed;
         public int Dmg => dmg;
         [SerializeField] protected int dmg;
 
         [SerializeField] private int health;
         [SerializeField] private float raycastDistance;
         [SerializeField] private float raycastRadius;
-        protected Camera playerCamera;
-        protected Player player;
+        [Header("Tool")]
+        [SerializeField] protected bool autoKill;
+        [SerializeField] protected float autoKillRate;
+        protected float autoKillTimer;
+        [SerializeField] protected Camera playerCamera;
+        [SerializeField] protected Player player;
         protected bool foundEnemy;
 
         private void Awake()
         {
+            autoKillTimer = autoKillRate;
             playerCamera = Camera.main;
             player = FindAnyObjectByType<Player>();
-        }
-
-        private void OnCollisionEnter(Collision collision)
-        {
-            Player player = collision.gameObject.GetComponent<Player>();
-            if(player != null)
-            {
-                player.SubtractHealth(dmg);
-                Destroy(gameObject);
-            }
         }
 
         public void SubtractHealth(int dmg)
@@ -36,15 +31,8 @@ namespace FinalProject
             health -= dmg;
         }
 
-        private void Update()
-        {
-            if(health <= 0)
-            {
-                Destroy(gameObject);
-            }
-        }
 
-        protected void MoveTowardPlayer()
+        protected virtual void MoveTowardPlayer()
         {
             if (foundEnemy == false)
             {
@@ -60,7 +48,6 @@ namespace FinalProject
                 Enemy enemyFound = hit.transform.GetComponent<Enemy>();
                 if(enemyFound != null && enemyFound != gameObject)
                 {
-                    Debug.Log(enemyFound);
                     foundEnemy = true;
                 } 
             }
@@ -76,6 +63,24 @@ namespace FinalProject
             {
                 Gizmos.DrawLine(transform.position, transform.position + transform.forward * raycastDistance);
                 Gizmos.DrawSphere(transform.position + transform.forward * raycastDistance, raycastRadius);
+            }
+        }
+
+        protected void AutoKill()
+        {
+            autoKillTimer -= Time.deltaTime;
+            if(autoKillTimer <= 0)
+            {
+                Destroy(gameObject);
+                autoKillTimer = autoKillRate;
+            }
+        }
+
+        protected void CheckForHealth()
+        {
+            if(health <= 0)
+            {
+                Destroy(gameObject);
             }
         }
     }

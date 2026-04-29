@@ -16,7 +16,6 @@ namespace FinalProject
             if(health <= 0)
             {
                 health = 0;
-                Debug.Log("You should be dead");
             }
         }
 
