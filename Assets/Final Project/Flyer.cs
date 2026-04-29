@@ -65,10 +65,10 @@ namespace FinalProject
 
             if(dropBullet == true)
             {
-                Instantiate(bulletPrefab, spawnPoint.position, Quaternion.identity);
+                GameObject bulletSpawned = Instantiate(bulletPrefab, spawnPoint.position, Quaternion.identity);
+                bulletSpawned.GetComponent<Bullet>().FlyerEnemy(gameObject.GetComponent<Flyer>());
                 dropBullet = false;
             }
-            
         }
     }
 }

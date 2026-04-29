@@ -136,5 +136,5 @@ MonoBehaviour:
   autoKillRate: 2
   playerCamera: {fileID: 0}
   player: {fileID: 0}
-  attackDistance: 0.5
+  attackDistance: 0.8
   attackSpeed: 2

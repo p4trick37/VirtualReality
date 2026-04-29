@@ -56,7 +56,7 @@ namespace FinalProject
         {
             Vector3 location = Vector3.zero;
             float randomRadi = Random.Range(minRadius, maxRadius);
-            float randomAngle = Random.Range(0, 360);
+            float randomAngle = Random.Range(0, 180);
             float x = randomRadi * Mathf.Cos(randomAngle * Mathf.Deg2Rad);
             float z = randomRadi * Mathf.Sin(randomAngle * Mathf.Deg2Rad);
             location = new Vector3(x, playerCamera.transform.position.y, z);

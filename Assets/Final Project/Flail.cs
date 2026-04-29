@@ -1,9 +1,8 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace FinalProject
 {
-    public class Sword : Weapon
+    public class Flail : Weapon
     {
         [SerializeField] private Rigidbody rb;
         [SerializeField] private float speedThreshold;
@@ -18,7 +17,7 @@ namespace FinalProject
         private void Update()
         {
             currentSpeed = rb.linearVelocity.magnitude;
-            if(currentSpeed > speedThreshold)
+            if (currentSpeed > speedThreshold)
             {
                 canDealDamage = true;
             }
@@ -30,7 +29,7 @@ namespace FinalProject
         private void OnTriggerEnter(Collider other)
         {
             Enemy enemy = other.gameObject.GetComponent<Enemy>();
-            if(enemy != null && canDealDamage == true)
+            if (enemy != null && canDealDamage == true)
             {
                 DealDamage(enemy);
             }

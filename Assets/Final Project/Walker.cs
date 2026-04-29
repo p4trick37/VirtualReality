@@ -55,7 +55,7 @@ namespace FinalProject
 
         private void Attack()
         {
-            player.SubtractHealth(dmg);
+            DealDamageToPlayer(dmg);
         }
 
     }

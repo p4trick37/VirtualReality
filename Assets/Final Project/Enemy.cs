@@ -36,7 +36,7 @@ namespace FinalProject
         {
             if (foundEnemy == false)
             {
-                transform.LookAt(new Vector3(0, playerCamera.gameObject.transform.position.y, 0));
+                transform.LookAt(new Vector3(0, transform.position.y, 0));
                 transform.position += transform.forward * moveSpeed * Time.deltaTime;
             }
         }
@@ -82,6 +82,11 @@ namespace FinalProject
             {
                 Destroy(gameObject);
             }
+        }
+
+        public void DealDamageToPlayer(int dmg)
+        {
+            player.SubtractHealth(dmg);
         }
     }
 }
