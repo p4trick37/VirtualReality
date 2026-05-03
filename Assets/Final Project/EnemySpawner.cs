@@ -17,7 +17,10 @@ namespace FinalProject
         [SerializeField] private float spawnRate;
         [SerializeField] private float minRadius;
         [SerializeField] private float maxRadius;
+        [SerializeField] private float minAngle;
+        [SerializeField] private float maxAngle;
         [SerializeField] private Camera playerCamera;
+        [SerializeField] private float spawnHeight;
         private float spawnTimer;
 
         [Header("Wave Manager")]
@@ -29,7 +32,9 @@ namespace FinalProject
         private bool spawnWave;
         private int enemiesSpawned;
         private bool waveAlreadyCompleted = false;
-        
+        private bool orderCreated = false;
+
+        private string[] order;
         private void Awake()
         {
             spawnTimer = spawnRate;
@@ -41,9 +46,15 @@ namespace FinalProject
         {
             if(spawnWave == true)
             {
+                
                 int enemiesToSpawn = EnemiesToSpawn(waveManager.Wave);
+                if (orderCreated == false)
+                {
+                    order = SpawnOrder(enemiesToSpawn, waveManager.NumOfFlyersSpawn());
+                    orderCreated = true;
+                }
                 waveAlreadyCompleted = false;
-                SpawnEnemies(SpawnOrder(enemiesToSpawn, waveManager.NumOfFlyersSpawn()));
+                SpawnEnemies(order);
             }
 
             if(CheckForWaveCompleted() == true)
@@ -56,16 +67,18 @@ namespace FinalProject
         {
             Vector3 location = Vector3.zero;
             float randomRadi = Random.Range(minRadius, maxRadius);
-            float randomAngle = Random.Range(0, 180);
+            float randomAngle = Random.Range(minAngle, maxAngle);
             float x = randomRadi * Mathf.Cos(randomAngle * Mathf.Deg2Rad);
             float z = randomRadi * Mathf.Sin(randomAngle * Mathf.Deg2Rad);
-            location = new Vector3(x, playerCamera.transform.position.y, z);
+            location = new Vector3(x, spawnHeight, z);
             return location;
         }
 
         private void SpawnEnemies(string[] enemyOrder)
         {
             spawnTimer -= Time.deltaTime;
+            Debug.Log(PrintOrder(enemyOrder));
+
             if (spawnTimer <= 0)
             {
                 GameObject objEnemy;
@@ -119,6 +132,7 @@ namespace FinalProject
 
         public void StartWave()
         {
+            orderCreated = false;
             spawnWave = true;
         }
 
@@ -175,5 +189,30 @@ namespace FinalProject
 
             return enemies;
         }
+
+        private string PrintOrder(string[] order)
+        {
+            string orderStr = "";
+            for(int i = 0; i < order.Length; i++)
+            {
+                orderStr += order[i] + ", ";
+            }
+            return orderStr;
+        }
+
+        private void OnDrawGizmos()
+        {
+            Vector3 direction1 = Vector3.zero;
+            direction1.x = Mathf.Cos(minAngle * Mathf.Deg2Rad);
+            direction1.y = 0;
+            direction1.z = Mathf.Sin(minAngle * Mathf.Deg2Rad);
+            Gizmos.DrawLine(Vector3.zero, direction1 * 20);
+            Vector3 direction2 = Vector3.zero;
+            direction2.x = Mathf.Cos(maxAngle * Mathf.Deg2Rad);
+            direction2.y = 0;
+            direction2.z = Mathf.Sin(maxAngle * Mathf.Deg2Rad);
+            Gizmos.DrawLine(Vector3.zero, direction2 * 20);
+        }
+
     }
 }

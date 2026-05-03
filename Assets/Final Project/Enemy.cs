@@ -1,34 +1,51 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 namespace FinalProject
 {
     public class Enemy : MonoBehaviour
     {
+        [Header("Enemy Base")]
         [SerializeField] protected float moveSpeed;
         public int Dmg => dmg;
         [SerializeField] protected int dmg;
 
         [SerializeField] private int health;
-        [SerializeField] private float raycastDistance;
-        [SerializeField] private float raycastRadius;
+        [SerializeField] protected float raycastDistance;
+        [SerializeField] protected float raycastRadius;
         [Header("Tool")]
         [SerializeField] protected bool autoKill;
-        [SerializeField] protected float autoKillRate;
-        protected float autoKillTimer;
+        [SerializeField] private float autoKillRate;
+        private float autoKillTimer;
+        [SerializeField] protected bool autoTakeDamage;
+        [SerializeField] private float damageRate;
+        [SerializeField] private int amountOfDamage;
+        private float autoDamageTimer;
+        [Header("Player Reference")]
         [SerializeField] protected Camera playerCamera;
         [SerializeField] protected Player player;
+        [Header("Hightlight")]
+        [SerializeField] private GameObject flashHighlight;
+        [SerializeField] private float maxAlpha;
+        [SerializeField] private float timeInterval;
+
         protected bool foundEnemy;
 
         private void Awake()
         {
             autoKillTimer = autoKillRate;
+            autoDamageTimer = damageRate;
             playerCamera = Camera.main;
             player = FindAnyObjectByType<Player>();
         }
 
-        public void SubtractHealth(int dmg)
+        public void TakeDamage(int dmg)
         {
             health -= dmg;
+            StopAllCoroutines();
+            StartCoroutine(Flash());
+            Debug.Log("Took Damage");
         }
 
 
@@ -41,7 +58,7 @@ namespace FinalProject
             }
         }
 
-        protected void FindEnemy()
+        protected virtual void FindEnemy()
         {
             if(Physics.SphereCast(transform.position, raycastRadius, transform.forward, out RaycastHit hit, raycastDistance))
             {
@@ -76,6 +93,16 @@ namespace FinalProject
             }
         }
 
+        protected void AutoTakeDamage()
+        {
+            autoDamageTimer -= Time.deltaTime;
+            if(autoDamageTimer <= 0 )
+            {
+                TakeDamage(amountOfDamage);
+                autoDamageTimer = damageRate;
+            }
+        }
+
         protected void CheckForHealth()
         {
             if(health <= 0)
@@ -87,6 +114,24 @@ namespace FinalProject
         public void DealDamageToPlayer(int dmg)
         {
             player.SubtractHealth(dmg);
+        }
+
+        protected IEnumerator Flash()
+        {
+            flashHighlight.SetActive(true);
+            float x = maxAlpha;
+            Color currentColor = flashHighlight.GetComponent<MeshRenderer>().material.color;
+            flashHighlight.GetComponent<MeshRenderer>().material.color = new Color(currentColor.r, currentColor.g, currentColor.b, Mathf.InverseLerp(0, 255, maxAlpha));
+            
+            
+            while(x > 0)
+            {
+                Color nextColor = new Color(currentColor.r, currentColor.g, currentColor.b, Mathf.InverseLerp(0, 255, x));
+                flashHighlight.GetComponent<MeshRenderer>().material.color = nextColor;
+                x--;
+                yield return new WaitForSeconds(timeInterval);
+            }
+            flashHighlight.SetActive(false);
         }
     }
 }

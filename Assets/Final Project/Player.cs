@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 namespace FinalProject
@@ -5,6 +6,7 @@ namespace FinalProject
     public class Player : MonoBehaviour
     {
         [SerializeField] private int health;
+        [SerializeField] private TMP_Text healthText;
         void Start()
         {
         
@@ -17,6 +19,8 @@ namespace FinalProject
             {
                 health = 0;
             }
+
+            healthText.text = health.ToString();
         }
 
         public void SubtractHealth(int dmg)

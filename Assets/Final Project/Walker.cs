@@ -4,6 +4,7 @@ namespace FinalProject
 {
     public class Walker : Enemy
     {
+        [Header("Walker")]
         [SerializeField] private float attackDistance;
         [SerializeField] private float attackSpeed;
         private float attackTimer;
@@ -12,6 +13,11 @@ namespace FinalProject
             if (autoKill == true)
             {
                 AutoKill();
+            }
+
+            if(autoTakeDamage == true)
+            {
+                AutoTakeDamage();
             }
 
             FindEnemy();
@@ -57,6 +63,5 @@ namespace FinalProject
         {
             DealDamageToPlayer(dmg);
         }
-
     }
 }

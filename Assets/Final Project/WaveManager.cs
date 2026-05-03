@@ -37,7 +37,7 @@ namespace FinalProject
 
         public int NumOfFlyersSpawn()
         {
-            float floatNum = (float)(1 + (wave - 1) * 0.5f);
+            float floatNum = 1 + (wave - 1) * 0.5f;
             int numToSpawn = Mathf.FloorToInt(floatNum);
             if(wave < 3 )
             {

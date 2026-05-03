@@ -8,7 +8,7 @@ namespace FinalProject
 
         protected void DealDamage(Enemy enemy)
         {
-            enemy.SubtractHealth(dmg);
+            enemy.TakeDamage(dmg);
         }
     }
 }
