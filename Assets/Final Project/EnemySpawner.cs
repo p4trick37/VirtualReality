@@ -114,7 +114,7 @@ namespace FinalProject
             bool objectNotNull = false;
             for(int i = 0; i < enemies.Count; i++)
             {
-                if(enemies[i] != null )
+                if(enemies[i] != null && enemies[i].Dead == false)
                 {
                     objectNotNull = true;
                 }
@@ -140,6 +140,7 @@ namespace FinalProject
         {
             for (int i = enemies.Count - 1; i >= 0; i--)
             {
+                Destroy(enemies[i]);
                 enemies.RemoveAt(i);
             }
         }
@@ -213,6 +214,5 @@ namespace FinalProject
             direction2.z = Mathf.Sin(maxAngle * Mathf.Deg2Rad);
             Gizmos.DrawLine(Vector3.zero, direction2 * 20);
         }
-
     }
 }

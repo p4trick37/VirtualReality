@@ -14,6 +14,10 @@ namespace FinalProject
         [SerializeField] private int health;
         [SerializeField] protected float raycastDistance;
         [SerializeField] protected float raycastRadius;
+        public bool Dead => dead;
+        [SerializeField] protected bool dead = false;
+        [SerializeField] private float despawnRate;
+        [SerializeField] private float despawnTimer;
         [Header("Tool")]
         [SerializeField] protected bool autoKill;
         [SerializeField] private float autoKillRate;
@@ -38,6 +42,7 @@ namespace FinalProject
             autoDamageTimer = damageRate;
             playerCamera = Camera.main;
             player = FindAnyObjectByType<Player>();
+            despawnTimer = despawnRate;
         }
 
         public void TakeDamage(int dmg)
@@ -107,7 +112,7 @@ namespace FinalProject
         {
             if(health <= 0)
             {
-                Destroy(gameObject);
+                dead = true;
             }
         }
 
@@ -132,6 +137,14 @@ namespace FinalProject
                 yield return new WaitForSeconds(timeInterval);
             }
             flashHighlight.SetActive(false);
+        }
+        protected virtual void OnDeath()
+        {
+            despawnTimer -= Time.deltaTime;
+            if(despawnTimer <= 0)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }

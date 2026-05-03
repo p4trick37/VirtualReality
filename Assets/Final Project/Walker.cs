@@ -8,6 +8,11 @@ namespace FinalProject
         [SerializeField] private float attackDistance;
         [SerializeField] private float attackSpeed;
         private float attackTimer;
+        [Header("Animations")]
+        [SerializeField] private Animator ani;
+        [SerializeField] private string deathParameter;
+        [SerializeField] private string attackParameter;
+        [SerializeField] private string idleParameter;
         private void Update()
         {
             if (autoKill == true)
@@ -25,7 +30,7 @@ namespace FinalProject
 
             if(PositionToAttack())
             {
-                AttackPhase();
+                GoToAttack();
             }
             else
             {
@@ -33,6 +38,25 @@ namespace FinalProject
             }
 
             CheckForHealth();
+
+            if(dead == true)
+            {
+                OnDeath();
+            }
+        }
+
+        protected override void MoveTowardPlayer()
+        {
+            if (foundEnemy == false)
+            {
+                GoToWalk();
+                transform.LookAt(new Vector3(0, transform.position.y, 0));
+                transform.position += transform.forward * moveSpeed * Time.deltaTime;
+            }
+            else
+            {
+                GoToIdle();
+            }
         }
 
         private bool PositionToAttack()
@@ -48,20 +72,45 @@ namespace FinalProject
             }
         }
 
-        private void AttackPhase()
-        {
-            attackTimer -= Time.deltaTime;
-            if(attackTimer <= 0)
-            {
-                Attack();
-                attackTimer = attackSpeed;
-            }
+        //private void AttackPhase()
+        //{
+        //    attackTimer -= Time.deltaTime;
+        //    if(attackTimer <= 0)
+        //    {
+        //        Attack();
+        //        attackTimer = attackSpeed;
+        //    }
 
-        }
+        //}
 
-        private void Attack()
+        public void Attack()
         {
             DealDamageToPlayer(dmg);
+        }
+
+        private void GoToDeathAni()
+        {
+            ani.SetBool(deathParameter, true);
+        }
+
+        private void GoToWalk()
+        {
+            ani.SetBool(idleParameter, false);
+        }
+        private void GoToIdle()
+        {
+            ani.SetBool(idleParameter, true);
+        }
+
+        private void GoToAttack()
+        {
+            ani.SetBool(attackParameter, true);
+        }
+
+        protected override void OnDeath()
+        {
+            GoToDeathAni();
+            base.OnDeath();
         }
     }
 }
