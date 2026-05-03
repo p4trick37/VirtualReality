@@ -77,7 +77,7 @@ namespace FinalProject
         private void SpawnEnemies(string[] enemyOrder)
         {
             spawnTimer -= Time.deltaTime;
-            Debug.Log(PrintOrder(enemyOrder));
+            //Debug.Log(PrintOrder(enemyOrder));
 
             if (spawnTimer <= 0)
             {
@@ -140,8 +140,12 @@ namespace FinalProject
         {
             for (int i = enemies.Count - 1; i >= 0; i--)
             {
-                Destroy(enemies[i]);
+                Enemy enemy = enemies[i];
                 enemies.RemoveAt(i);
+                if(enemy != null)
+                {
+                    Destroy(enemy.gameObject);
+                }
             }
         }
 
@@ -207,12 +211,12 @@ namespace FinalProject
             direction1.x = Mathf.Cos(minAngle * Mathf.Deg2Rad);
             direction1.y = 0;
             direction1.z = Mathf.Sin(minAngle * Mathf.Deg2Rad);
-            Gizmos.DrawLine(Vector3.zero, direction1 * 20);
+            Gizmos.DrawLine(Vector3.zero, direction1 * maxRadius);
             Vector3 direction2 = Vector3.zero;
             direction2.x = Mathf.Cos(maxAngle * Mathf.Deg2Rad);
             direction2.y = 0;
             direction2.z = Mathf.Sin(maxAngle * Mathf.Deg2Rad);
-            Gizmos.DrawLine(Vector3.zero, direction2 * 20);
+            Gizmos.DrawLine(Vector3.zero, direction2 * maxRadius);
         }
     }
 }

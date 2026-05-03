@@ -50,7 +50,6 @@ namespace FinalProject
             health -= dmg;
             StopAllCoroutines();
             StartCoroutine(Flash());
-            Debug.Log("Took Damage");
         }
 
 

@@ -9,10 +9,14 @@ namespace FinalProject
         [SerializeField] private float speedThreshold;
         [SerializeField] private float currentSpeed;
         private bool canDealDamage;
-
+        private bool hitEnemy;
         private void Awake()
         {
-            rb = GetComponent<Rigidbody>();
+            if(rb == null)
+            {
+                rb = GetComponentInParent<Rigidbody>();
+            }
+            
         }
 
         private void Update()
@@ -30,10 +34,17 @@ namespace FinalProject
         private void OnTriggerEnter(Collider other)
         {
             Enemy enemy = other.gameObject.GetComponent<Enemy>();
-            if(enemy != null && canDealDamage == true)
+            if(enemy != null && canDealDamage == true && hitEnemy == false)
             {
                 DealDamage(enemy);
+                Debug.Log("This shit happened sometime");
+                hitEnemy = true;
             }
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            hitEnemy = false;
         }
     }
 }
