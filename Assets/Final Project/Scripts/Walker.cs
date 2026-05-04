@@ -13,6 +13,9 @@ namespace FinalProject
         [SerializeField] private string deathParameter;
         [SerializeField] private string attackParameter;
         [SerializeField] private string idleParameter;
+        [Header("Collider")]
+        [SerializeField] private BoxCollider enemyCollider;
+        
         private void Update()
         {
             if (autoKill == true)
@@ -25,21 +28,23 @@ namespace FinalProject
                 AutoTakeDamage();
             }
 
-            FindEnemy();
-            
-
-            if(PositionToAttack())
+            if(dead == false)
             {
-                GoToAttack();
+                FindEnemy();
+
+
+                if (PositionToAttack())
+                {
+                    GoToAttack();
+                }
+                else
+                {
+                    MoveTowardPlayer();
+                }
+
+                CheckForHealth();
             }
             else
-            {
-                MoveTowardPlayer();
-            }
-
-            CheckForHealth();
-
-            if(dead == true)
             {
                 OnDeath();
             }
@@ -110,6 +115,11 @@ namespace FinalProject
         protected override void OnDeath()
         {
             GoToDeathAni();
+            if(enemyCollider == null)
+            {
+                enemyCollider = GetComponent<BoxCollider>();
+            }
+            enemyCollider.enabled = false;
             base.OnDeath();
         }
     }

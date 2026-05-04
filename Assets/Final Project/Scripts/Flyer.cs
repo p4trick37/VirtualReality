@@ -17,6 +17,10 @@ namespace FinalProject
         private bool dropBullet;
         private bool positionToDrop;
         private float upDownOffset;
+        private bool beenKilled = false;
+        [Header("Physics")]
+        [SerializeField] private Rigidbody rb;
+        [SerializeField] private float forceMagnitude;
 
         private void Start()
         {
@@ -40,6 +44,22 @@ namespace FinalProject
             FindEnemy();
 
             CheckForHealth();
+
+            if(dead == true)
+            {
+                OnDeath();
+                if(beenKilled == false)
+                {
+                    rb = GetComponent<Rigidbody>();
+                    if(rb != null)
+                    {
+                        rb.useGravity = true;
+                        rb.AddForce(-transform.forward * forceMagnitude);
+                    }
+                    beenKilled = true;
+                }
+
+            }
         }
 
 
@@ -53,7 +73,10 @@ namespace FinalProject
         }
         private void MoveUpDown()
         {
-            transform.position = new Vector3(transform.position.x, ChangeYValue() * heightSpread + startingHeight, transform.position.z);
+            if (dead == false)
+            {
+                transform.position = new Vector3(transform.position.x, ChangeYValue() * heightSpread + startingHeight, transform.position.z);
+            }
         }
 
         private float ChangeYValue()
@@ -128,22 +151,5 @@ namespace FinalProject
                 foundEnemy = false;
             }
         }
-
-        
-        //protected override void FindEnemy()
-        //{
-        //    if (Physics.SphereCast(transform.position, raycastRadius, transform.forward, out RaycastHit hit, raycastDistance))
-        //    {
-        //        Enemy enemyFound = hit.transform.GetComponent<Enemy>();
-        //        if (enemyFound != null && enemyFound != gameObject)
-        //        {
-        //            foundEnemy = true;
-        //        }
-        //    }
-        //    else
-        //    {
-        //        foundEnemy = false;
-        //    }
-        //}
     }
 }

@@ -17,7 +17,7 @@ namespace FinalProject
         public bool Dead => dead;
         [SerializeField] protected bool dead = false;
         [SerializeField] private float despawnRate;
-        [SerializeField] private float despawnTimer;
+        private float despawnTimer;
         [Header("Tool")]
         [SerializeField] protected bool autoKill;
         [SerializeField] private float autoKillRate;
@@ -33,6 +33,8 @@ namespace FinalProject
         [SerializeField] private GameObject flashHighlight;
         [SerializeField] private float maxAlpha;
         [SerializeField] private float timeInterval;
+        [Header("Particle System")]
+        [SerializeField] private ParticleSystem particle;
 
         protected bool foundEnemy;
 
@@ -49,7 +51,15 @@ namespace FinalProject
         {
             health -= dmg;
             StopAllCoroutines();
-            StartCoroutine(Flash());
+            if(particle != null)
+            {
+                particle.Play();
+            }
+
+            if (dead == false)
+            {
+                StartCoroutine(Flash());
+            }
         }
 
 
@@ -67,7 +77,7 @@ namespace FinalProject
             if(Physics.SphereCast(transform.position, raycastRadius, transform.forward, out RaycastHit hit, raycastDistance))
             {
                 Enemy enemyFound = hit.transform.GetComponent<Enemy>();
-                if(enemyFound != null && enemyFound != gameObject)
+                if(enemyFound != null && enemyFound != gameObject && enemyFound.Dead == false)
                 {
                     foundEnemy = true;
                 } 
@@ -122,20 +132,23 @@ namespace FinalProject
 
         protected IEnumerator Flash()
         {
-            flashHighlight.SetActive(true);
-            float x = maxAlpha;
-            Color currentColor = flashHighlight.GetComponent<MeshRenderer>().material.color;
-            flashHighlight.GetComponent<MeshRenderer>().material.color = new Color(currentColor.r, currentColor.g, currentColor.b, Mathf.InverseLerp(0, 255, maxAlpha));
-            
-            
-            while(x > 0)
+            if (dead == false)
             {
-                Color nextColor = new Color(currentColor.r, currentColor.g, currentColor.b, Mathf.InverseLerp(0, 255, x));
-                flashHighlight.GetComponent<MeshRenderer>().material.color = nextColor;
-                x--;
-                yield return new WaitForSeconds(timeInterval);
+                flashHighlight.SetActive(true);
+                float x = maxAlpha;
+                Color currentColor = flashHighlight.GetComponent<MeshRenderer>().material.color;
+                flashHighlight.GetComponent<MeshRenderer>().material.color = new Color(currentColor.r, currentColor.g, currentColor.b, Mathf.InverseLerp(0, 255, maxAlpha));
+
+
+                while (x > 0)
+                {
+                    Color nextColor = new Color(currentColor.r, currentColor.g, currentColor.b, Mathf.InverseLerp(0, 255, x));
+                    flashHighlight.GetComponent<MeshRenderer>().material.color = nextColor;
+                    x--;
+                    yield return new WaitForSeconds(timeInterval);
+                }
+                flashHighlight.SetActive(false);
             }
-            flashHighlight.SetActive(false);
         }
         protected virtual void OnDeath()
         {
