@@ -22,10 +22,15 @@ namespace FinalProject
         [SerializeField] private Rigidbody rb;
         [SerializeField] private float forceMagnitude;
 
+        public static int maxHealth;
+        public static int staticDamage;
+
         private void Start()
         {
             timer = dropRate;
             upDownOffset = Mathf.Sin(Time.time * upDownSpeed);
+            health = maxHealth;
+            dmg = staticDamage;
         }
         private void Update()
         {
@@ -150,6 +155,16 @@ namespace FinalProject
             {
                 foundEnemy = false;
             }
+        }
+
+        public static void ScaleMaxHealth(int amount)
+        {
+            maxHealth += amount;
+        }
+
+        public static void ScaleDamage(int amount)
+        {
+            staticDamage += amount;
         }
     }
 }

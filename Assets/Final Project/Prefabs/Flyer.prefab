@@ -219,13 +219,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FinalProject.Flyer
   moveSpeed: 0.5
-  dmg: 5
+  dmg: 8
   health: 10
   raycastDistance: 0.25
   raycastRadius: 0.35
   dead: 0
   despawnRate: 2
-  despawnTimer: 0
   autoKill: 0
   autoKillRate: 2
   autoTakeDamage: 0
@@ -236,6 +235,7 @@ MonoBehaviour:
   flashHighlight: {fileID: 3851352340911000650}
   maxAlpha: 100
   timeInterval: 0.0000001
+  particle: {fileID: 0}
   heightSpread: 0.5
   startingHeight: 2
   upDownSpeed: 1

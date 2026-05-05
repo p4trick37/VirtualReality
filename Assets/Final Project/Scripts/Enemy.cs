@@ -11,7 +11,8 @@ namespace FinalProject
         public int Dmg => dmg;
         [SerializeField] protected int dmg;
 
-        [SerializeField] private int health;
+        [SerializeField] protected int health;
+
         [SerializeField] protected float raycastDistance;
         [SerializeField] protected float raycastRadius;
         public bool Dead => dead;

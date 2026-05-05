@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
@@ -10,6 +11,16 @@ namespace FinalProject
         [SerializeField] private int wave;
         [SerializeField] private float waveDelay;
         [SerializeField] private EnemySpawner enemySpawner;
+        [SerializeField] private TMP_Text waveText;
+        [SerializeField] private int startingFlyerWave;
+        [Header("Enemy Scaling")]
+        [SerializeField] private int walkerHealthScale;
+        [SerializeField] private int flyerHealthScale;
+        [SerializeField] private int walkerDamageScale;
+        [SerializeField] private int flyerDamageScale;
+        
+
+
         public static int staticWave = 1;
 
         private bool waveCompleted;
@@ -22,6 +33,8 @@ namespace FinalProject
                 waveCompleted = false;
                 StartCoroutine(WaveDelay());
             }
+
+            waveText.text = "Wave: " + wave;
         }
 
         private IEnumerator WaveDelay()
@@ -30,6 +43,13 @@ namespace FinalProject
             enemySpawner.ClearList();
             yield return new WaitForSeconds(waveDelay);
             waveCompleted = false;
+            Walker.ScaleMaxHealth(walkerHealthScale);
+            Walker.ScaleDamage(walkerDamageScale);
+            if(wave >= startingFlyerWave)
+            {
+                Flyer.ScaleMaxHealth(flyerHealthScale);
+                Flyer.ScaleDamage(flyerDamageScale);
+            }
             enemySpawner.StartWave();
         }
 
@@ -42,7 +62,7 @@ namespace FinalProject
         {
             float floatNum = 1 + (wave - 1) * 0.5f;
             int numToSpawn = Mathf.FloorToInt(floatNum);
-            if(wave < 3 )
+            if(wave < startingFlyerWave)
             {
                 numToSpawn = 0;
             }

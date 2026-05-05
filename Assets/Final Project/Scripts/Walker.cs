@@ -7,6 +7,8 @@ namespace FinalProject
         [Header("Walker")]
         [SerializeField] private float attackDistance;
         [SerializeField] private float attackSpeed;
+        public static int maxHealth;
+        public static int staticDamage;
         private float attackTimer;
         [Header("Animations")]
         [SerializeField] private Animator ani;
@@ -15,7 +17,13 @@ namespace FinalProject
         [SerializeField] private string idleParameter;
         [Header("Collider")]
         [SerializeField] private BoxCollider enemyCollider;
-        
+
+        private void Start()
+        {
+            health = maxHealth;
+            dmg = staticDamage;
+        }
+
         private void Update()
         {
             if (autoKill == true)
@@ -121,6 +129,16 @@ namespace FinalProject
             }
             enemyCollider.enabled = false;
             base.OnDeath();
+        }
+
+        public static void ScaleMaxHealth(int amount)
+        {
+            maxHealth += amount;
+        }
+
+        public static void ScaleDamage(int amount)
+        {
+            staticDamage += amount;
         }
     }
 }
