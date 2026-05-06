@@ -19,6 +19,12 @@ namespace FinalProject
         [SerializeField] private Transform hand;
         [Header("HighLight")]
         [SerializeField] private GameObject highlight;
+        [Header("Upgrade Area")]
+        [SerializeField] private bool activeInGame;
+        [SerializeField] private bool beenBought;
+        [SerializeField] private bool hasEnoughKills;
+        [SerializeField] private UpgradeManager upgradeManager;
+
 
         private bool canDealDamage;
         private bool hitEnemy;
@@ -77,20 +83,33 @@ namespace FinalProject
 
         private void OnEnable()
         {
-            interactable.selectEntered.AddListener(OnSelection);
-            interactable.selectExited.AddListener(OnSelectionExit);
+            interactable.hoverEntered.AddListener(OnHover);
+            if (hasEnoughKills == true)
+            {
+                interactable.selectEntered.AddListener(OnSelection);
+                interactable.selectExited.AddListener(OnSelectionExit);
+            }
         }
 
         private void OnDisable()
         {
+            interactable.hoverEntered.RemoveListener(OnHover);
             interactable.selectEntered.RemoveListener(OnSelection);
             interactable.selectExited.RemoveListener(OnSelectionExit);
         }
 
         private void OnSelection(SelectEnterEventArgs args)
         {
-            hand = args.interactorObject.GetAttachTransform(interactable);
-            holdSword = true;
+            if (beenBought == true)
+            {
+                hand = args.interactorObject.GetAttachTransform(interactable);
+                holdSword = true;
+            }
+            else
+            {
+                upgradeManager.BuySword(gameObject);
+                beenBought = true;
+            }
         }
 
         private void OnSelectionExit(SelectExitEventArgs args)
@@ -98,8 +117,29 @@ namespace FinalProject
             holdSword = false;
         }
 
+        private void OnHover(HoverEnterEventArgs args)
+        {
+            int price = upgradeManager.CurrentPrice;
+            if (UpgradeManager.enemiesKilled >= price)
+            {
+                hasEnoughKills = true;
+                interactable.trackRotation = false;
+            }
+            else
+            {
+                hasEnoughKills = false;
+            }
+        }
 
+        public void SwordActivate()
+        {
+            activeInGame = true;
+        }
 
-
+        public void SwordBought()
+        {
+            beenBought = true;
+        }
     }
 }
+

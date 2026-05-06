@@ -20,8 +20,8 @@ namespace FinalProject
 
         private void Start()
         {
-            health = maxHealth;
-            dmg = staticDamage;
+            health += maxHealth;
+            dmg += staticDamage;
         }
 
         private void Update()

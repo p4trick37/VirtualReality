@@ -29,8 +29,8 @@ namespace FinalProject
         {
             timer = dropRate;
             upDownOffset = Mathf.Sin(Time.time * upDownSpeed);
-            health = maxHealth;
-            dmg = staticDamage;
+            health += maxHealth;
+            dmg += staticDamage;
         }
         private void Update()
         {
