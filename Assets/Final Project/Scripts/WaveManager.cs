@@ -18,7 +18,6 @@ namespace FinalProject
         [SerializeField] private int flyerHealthScale;
         [SerializeField] private int walkerDamageScale;
         [SerializeField] private int flyerDamageScale;
-        
 
 
         public static int staticWave = 1;
@@ -41,6 +40,7 @@ namespace FinalProject
         {
             wave++;
             enemySpawner.ClearList();
+            UpgradeManager.enemiesKilled++;
             yield return new WaitForSeconds(waveDelay);
             waveCompleted = false;
             Walker.ScaleMaxHealth(walkerHealthScale);

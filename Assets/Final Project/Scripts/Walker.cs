@@ -17,6 +17,10 @@ namespace FinalProject
         [SerializeField] private string idleParameter;
         [Header("Collider")]
         [SerializeField] private BoxCollider enemyCollider;
+        [Header("Audio")]
+        [SerializeField] private AudioSource audi;
+        [SerializeField] private AudioClip attackClip;
+        [SerializeField] private AudioClip deathClip;
 
         private void Start()
         {
@@ -99,6 +103,8 @@ namespace FinalProject
         public void Attack()
         {
             DealDamageToPlayer(dmg);
+            audi.clip = attackClip;
+            audi.Play();
         }
 
         private void GoToDeathAni()
@@ -128,6 +134,10 @@ namespace FinalProject
                 enemyCollider = GetComponent<BoxCollider>();
             }
             enemyCollider.enabled = false;
+            if (alreadyDead == false)
+            {
+                audi.clip = deathClip;
+            }
             base.OnDeath();
         }
 

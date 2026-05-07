@@ -22,7 +22,7 @@ namespace FinalProject
         [SerializeField] protected bool dead = false;
         [SerializeField] private float despawnRate;
         private float despawnTimer;
-        private bool alreadyDead = false;
+        protected bool alreadyDead = false;
         [Header("Tool")]
         [SerializeField] protected bool autoKill;
         [SerializeField] private float autoKillRate;
@@ -62,16 +62,16 @@ namespace FinalProject
         public void TakeDamage(int dmg)
         {
             health -= dmg;
-            StopAllCoroutines();
+            //StopAllCoroutines();
             if(particle != null)
             {
                 particle.Play();
             }
 
-            if (dead == false)
-            {
-                StartCoroutine(Flash());
-            }
+            //if (dead == false)
+            //{
+            //    //StartCoroutine(Flash());
+            //}
         }
 
 

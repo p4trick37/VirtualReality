@@ -1,5 +1,4 @@
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace FinalProject
@@ -14,9 +13,12 @@ namespace FinalProject
         [SerializeField] private int additionalPrice;
         [Header("Swords")]
         [SerializeField] private GameObject[] swordPrefabs;
-        [SerializeField] private GameObject currentSword;
-        [SerializeField] private GameObject nextSword;
-        private GameObject previousSword;
+        [SerializeField] private GameObject currentSword1;
+        [SerializeField] private GameObject currentSword2;
+        [SerializeField] private GameObject nextSword1;
+        [SerializeField] private GameObject nextSword2;
+        private GameObject previousSword1;
+        private GameObject previousSword2;
         [SerializeField] private int currentSwordIndex;
         public static int enemiesKilled;
         [SerializeField] private bool atMaxSword;
@@ -26,6 +28,10 @@ namespace FinalProject
         [SerializeField] private TMP_Text priceText;
         [SerializeField] private TMP_Text killedBoxText;
         [SerializeField] private TMP_Text killedWaveText;
+        [Header("Sound")]
+        [SerializeField] private AudioSource audi;
+
+        private bool checkToSpawnSword;
 
         private void Awake()
         {
@@ -35,13 +41,24 @@ namespace FinalProject
 
         private void Update()
         {
-            if(atMaxSword == true)
-            {
-                Destroy(gameObject);
-                Destroy(box);
-            }
-
             UpdateUI();
+
+            if(checkToSpawnSword == true)
+            {
+                if(currentSword1.GetComponent<Sword>().BeenPickedUp == true && currentSword2.GetComponent<Sword>().BeenPickedUp == true)
+                {
+                    if (atMaxSword == false)
+                    {
+                        InstantiateNextSword();
+                    }
+                    else
+                    {
+                        Destroy(gameObject);
+                        Destroy(box);
+                    }
+                    checkToSpawnSword = false;
+                }
+            }
         }
 
         public void BuySword()
@@ -53,30 +70,44 @@ namespace FinalProject
             {
                 atMaxSword = true;
             }
-            InstantiateNextSword();
+            FlipSwords();
             DestoryPreviousSword();
-            
+            checkToSpawnSword = true;
+            currentSword1.GetComponent<Sword>().SwordBeenBought();
+            currentSword2.GetComponent<Sword>().SwordBeenBought();
+            audi.Play();
         }
 
-        public void InstantiateNextSword()
+        public void FlipSwords()
         {
             // hayden was here
-            previousSword = currentSword;
-            currentSword = nextSword;
+            previousSword1 = currentSword1;
+            previousSword2 = currentSword2;
+            currentSword1 = nextSword1;
+            currentSword2 = nextSword2;        
+        }
+
+        private void InstantiateNextSword()
+        {
             if (currentSwordIndex == swordPrefabs.Length - 1)
             {
-                nextSword = null;
+                nextSword1 = null;
+                nextSword2 = null;
             }
             else
             {
-                nextSword = Instantiate(swordPrefabs[currentSwordIndex + 1], transform.position, Quaternion.identity);
+                nextSword1 = Instantiate(swordPrefabs[currentSwordIndex + 1], new Vector3(transform.position.x, transform.position.y, transform.position.z + 0.126f), Quaternion.identity);
+                nextSword1.GetComponent<Sword>().SetHand(true);
+                nextSword2 = Instantiate(swordPrefabs[currentSwordIndex + 1], new Vector3(transform.position.x, transform.position.y, transform.position.z - 0.126f), Quaternion.identity);
+                nextSword2.GetComponent<Sword>().SetHand(false);
             }
         }
         private void DestoryPreviousSword()
         {
             if(currentSwordIndex > 0)
             {
-                Destroy(previousSword);
+                Destroy(previousSword1);
+                Destroy(previousSword2);
             }
         }
 
@@ -85,7 +116,6 @@ namespace FinalProject
             priceText.text = "Price: " + currentPrice + " kills";
             killedBoxText.text = "Current Kills: " + enemiesKilled;
             killedWaveText.text = "CurrentKills: " + enemiesKilled;
-
         }
     }
 }

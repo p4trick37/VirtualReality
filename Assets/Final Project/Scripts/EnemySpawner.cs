@@ -20,7 +20,9 @@ namespace FinalProject
         [SerializeField] private float minAngle;
         [SerializeField] private float maxAngle;
         [SerializeField] private Camera playerCamera;
-        [SerializeField] private float spawnHeight;
+        [SerializeField] private float walkerSpawnHeight;
+        public float FlyerSpawnHeight => flyerSpawnHeight;
+        [SerializeField] private float flyerSpawnHeight;
         private float spawnTimer;
 
         [Header("Wave Manager")]
@@ -65,12 +67,12 @@ namespace FinalProject
 
         private Vector3 RandomLocation()
         {
-            Vector3 location = Vector3.zero;
+            Vector3 location;
             float randomRadi = Random.Range(minRadius, maxRadius);
             float randomAngle = Random.Range(minAngle, maxAngle);
             float x = randomRadi * Mathf.Cos(randomAngle * Mathf.Deg2Rad);
             float z = randomRadi * Mathf.Sin(randomAngle * Mathf.Deg2Rad);
-            location = new Vector3(x, spawnHeight, z);
+            location = new Vector3(x, walkerSpawnHeight, z);
             return location;
         }
 
@@ -85,7 +87,8 @@ namespace FinalProject
                 Vector3 location = RandomLocation();
                 if (enemyOrder[enemiesSpawned].Equals("Flyer"))
                 {
-                    objEnemy = Instantiate(flyerPrefab, new Vector3(location.x, location.y + 1, location.z), Quaternion.identity);
+                    flyerSpawnHeight = walkerSpawnHeight + 1;
+                    objEnemy = Instantiate(flyerPrefab, new Vector3(location.x, flyerSpawnHeight, location.z), Quaternion.identity);
                 }
                 else
                 {

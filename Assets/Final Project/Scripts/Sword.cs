@@ -1,6 +1,3 @@
-using JetBrains.Annotations;
-using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
@@ -21,31 +18,36 @@ namespace FinalProject
         [Header("HighLight")]
         [SerializeField] private GameObject highlight;
         [Header("Upgrade Area")]
-        [SerializeField] private bool activeInGame;
+        public bool BeenPickedUp => beenPickedUp;
+        [SerializeField] private bool beenPickedUp;
         [SerializeField] private bool canBeBought;
         [SerializeField] private bool beenBought;
         [SerializeField] private bool hasEnoughKills;
         [SerializeField] private UpgradeManager upgradeManager;
         [SerializeField] private bool startingSword;
         [Header("RespawnPoint")]
-        [SerializeField] private Transform respawnPoint;
+        [SerializeField] private Transform respawnPoint1;
+        [SerializeField] private Transform respawnPoint2;
         [SerializeField] private float distanceToRespawn;
+        [SerializeField] private bool rightHand;
         private Player player;
+        [SerializeField] private AudioSource audi;
 
         private bool canDealDamage;
         private bool hitEnemy;
         private bool holdSword;
         private void Awake()
         {
-            if(rb == null)
+            if (rb == null)
             {
                 rb = GetComponentInParent<Rigidbody>();
             }
             upgradeManager = FindAnyObjectByType<UpgradeManager>();
             rb.linearVelocity = Vector3.zero;
             player = FindAnyObjectByType<Player>();
-            respawnPoint = GameObject.Find("RespawnPoint").transform;
-            if(startingSword == true)
+            respawnPoint1 = GameObject.Find("RespawnPoint1").transform;
+            respawnPoint2 = GameObject.Find("RespawnPoint2").transform;
+            if (startingSword == true)
             {
                 RespawnSword();
             }
@@ -55,7 +57,7 @@ namespace FinalProject
         {
             CheckingSpeed();
 
-            if(CheckForEnoughKills())
+            if (CheckForEnoughKills())
             {
                 canBeBought = true;
             }
@@ -64,7 +66,7 @@ namespace FinalProject
                 canBeBought = false;
             }
 
-            if(canBeBought == true|| beenBought == true|| startingSword == true)
+            if (canBeBought == true || beenBought == true || startingSword == true)
             {
                 interactable.trackRotation = true;
             }
@@ -73,7 +75,7 @@ namespace FinalProject
                 interactable.trackRotation = false;
             }
 
-            if(ShouldRespawn() == true)
+            if (ShouldRespawn() == true)
             {
                 RespawnSword();
             }
@@ -104,10 +106,11 @@ namespace FinalProject
         private void OnTriggerEnter(Collider other)
         {
             Enemy enemy = other.gameObject.GetComponent<Enemy>();
-            if(enemy != null && canDealDamage == true && hitEnemy == false)
+            if (enemy != null && canDealDamage == true && hitEnemy == false)
             {
                 DealDamage(enemy);
                 hitEnemy = true;
+                audi.Play();
             }
         }
 
@@ -142,22 +145,22 @@ namespace FinalProject
                 hand = args.interactorObject.GetAttachTransform(interactable);
                 holdSword = true;
                 UnFreezeSword();
+                beenPickedUp = true;
                 if (beenBought == false && startingSword == false)
                 {
                     upgradeManager.BuySword();
-                    beenBought = true;
                 }
             }
         }
 
-        
+
 
         private void OnSelectionExit(SelectExitEventArgs args)
         {
             holdSword = false;
         }
 
- 
+
 
         private bool CheckForEnoughKills()
         {
@@ -174,8 +177,17 @@ namespace FinalProject
 
         private bool ShouldRespawn()
         {
-            float distance = Vector3.Distance(transform.position, respawnPoint.position);
-            if (distance > distanceToRespawn && holdSword == false && (beenBought == true || startingSword == true))
+            float distance = 0;
+            if (rightHand == true)
+            {
+                distance = Vector3.Distance(transform.position, respawnPoint1.position);
+            }
+            else
+            {
+                distance = Vector3.Distance(transform.position, respawnPoint2.position);
+            }
+
+            if (distance > distanceToRespawn && holdSword == false && ((beenBought == true && beenPickedUp == true) || startingSword == true))
             {
                 return true;
             }
@@ -184,7 +196,14 @@ namespace FinalProject
         }
         private void RespawnSword()
         {
-            transform.position = respawnPoint.position;
+            if (rightHand == true)
+            {
+                transform.position = respawnPoint1.position;
+            }
+            else
+            {
+                transform.position = respawnPoint2.position;
+            }
             FreezeSword();
         }
 
@@ -203,13 +222,30 @@ namespace FinalProject
         private void ChangeAllLayerMasks()
         {
             gameObject.layer = 12;
-            Transform[] objectsInChildren = gameObject.GetComponentsInChildren<Transform>();
-            for(int i = 0; i < objectsInChildren.Length; i++)
+            Transform[] objectsInChildren = gameObject.GetComponentsInChildren<Transform>(); 
+            for (int i = 0; i < objectsInChildren.Length; i++)
             {
                 objectsInChildren[i].gameObject.layer = 12;
             }
         }
 
+        public void SetHand(bool shouldBeRight)
+        {
+            if (shouldBeRight == true)
+            {
+                rightHand = true;
+            }
+            else
+            {
+                rightHand = false;
+            }
+        }
+
+        public void SwordBeenBought()
+        {
+            beenBought = true;
+        }
+    
     }
 }
 

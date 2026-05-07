@@ -7,6 +7,7 @@ namespace FinalProject
     public class MenuLogic : MonoBehaviour
     {
         [SerializeField] private TMP_Text waveText;
+
         public void GoToGameplay()
         {
             SceneManager.LoadScene(1);
@@ -14,9 +15,10 @@ namespace FinalProject
 
         public void Awake()
         {
-            waveText.text = WaveManager.staticWave.ToString();
+            if (waveText != null)
+            {
+                waveText.text = WaveManager.staticWave.ToString();
+            }
         }
-
-
     }
 }
