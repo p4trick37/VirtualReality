@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -21,10 +22,15 @@ namespace FinalProject
         [SerializeField] private GameObject highlight;
         [Header("Upgrade Area")]
         [SerializeField] private bool activeInGame;
+        [SerializeField] private bool canBeBought;
         [SerializeField] private bool beenBought;
         [SerializeField] private bool hasEnoughKills;
         [SerializeField] private UpgradeManager upgradeManager;
-
+        [SerializeField] private bool startingSword;
+        [Header("RespawnPoint")]
+        [SerializeField] private Transform respawnPoint;
+        [SerializeField] private float distanceToRespawn;
+        private Player player;
 
         private bool canDealDamage;
         private bool hitEnemy;
@@ -35,13 +41,48 @@ namespace FinalProject
             {
                 rb = GetComponentInParent<Rigidbody>();
             }
-            
+            upgradeManager = FindAnyObjectByType<UpgradeManager>();
+            rb.linearVelocity = Vector3.zero;
+            player = FindAnyObjectByType<Player>();
+            respawnPoint = GameObject.Find("RespawnPoint").transform;
+            if(startingSword == true)
+            {
+                RespawnSword();
+            }
         }
 
         private void Update()
         {
+            CheckingSpeed();
+
+            if(CheckForEnoughKills())
+            {
+                canBeBought = true;
+            }
+            else
+            {
+                canBeBought = false;
+            }
+
+            if(canBeBought == true|| beenBought == true|| startingSword == true)
+            {
+                interactable.trackRotation = true;
+            }
+            else
+            {
+                interactable.trackRotation = false;
+            }
+
+            if(ShouldRespawn() == true)
+            {
+                RespawnSword();
+            }
+        }
+
+        private void CheckingSpeed()
+        {
             currentSpeed = rb.linearVelocity.magnitude;
-            if(currentSpeed > speedThreshold)
+            if (currentSpeed > speedThreshold)
             {
                 canDealDamage = true;
                 highlight.SetActive(true);
@@ -83,63 +124,92 @@ namespace FinalProject
 
         private void OnEnable()
         {
-            interactable.hoverEntered.AddListener(OnHover);
-            if (hasEnoughKills == true)
-            {
-                interactable.selectEntered.AddListener(OnSelection);
-                interactable.selectExited.AddListener(OnSelectionExit);
-            }
+            interactable.selectEntered.AddListener(OnSelection);
+            interactable.selectExited.AddListener(OnSelectionExit);
         }
 
         private void OnDisable()
         {
-            interactable.hoverEntered.RemoveListener(OnHover);
             interactable.selectEntered.RemoveListener(OnSelection);
             interactable.selectExited.RemoveListener(OnSelectionExit);
         }
 
         private void OnSelection(SelectEnterEventArgs args)
         {
-            if (beenBought == true)
+            if (canBeBought == true || beenBought == true)
             {
+                ChangeAllLayerMasks();
                 hand = args.interactorObject.GetAttachTransform(interactable);
                 holdSword = true;
-            }
-            else
-            {
-                upgradeManager.BuySword(gameObject);
-                beenBought = true;
+                UnFreezeSword();
+                if (beenBought == false && startingSword == false)
+                {
+                    upgradeManager.BuySword();
+                    beenBought = true;
+                }
             }
         }
+
+        
 
         private void OnSelectionExit(SelectExitEventArgs args)
         {
             holdSword = false;
         }
 
-        private void OnHover(HoverEnterEventArgs args)
+ 
+
+        private bool CheckForEnoughKills()
         {
             int price = upgradeManager.CurrentPrice;
-            if (UpgradeManager.enemiesKilled >= price)
+            if (UpgradeManager.enemiesKilled >= price || startingSword == true)
             {
-                hasEnoughKills = true;
-                interactable.trackRotation = false;
+                return true;
             }
             else
             {
-                hasEnoughKills = false;
+                return false;
             }
         }
 
-        public void SwordActivate()
+        private bool ShouldRespawn()
         {
-            activeInGame = true;
+            float distance = Vector3.Distance(transform.position, respawnPoint.position);
+            if (distance > distanceToRespawn && holdSword == false && (beenBought == true || startingSword == true))
+            {
+                return true;
+            }
+
+            return false;
+        }
+        private void RespawnSword()
+        {
+            transform.position = respawnPoint.position;
+            FreezeSword();
         }
 
-        public void SwordBought()
+        private void FreezeSword()
         {
-            beenBought = true;
+            rb.constraints = RigidbodyConstraints.FreezeAll;
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+            Debug.Log("Spin me right round");
         }
+
+        private void UnFreezeSword()
+        {
+            rb.constraints = RigidbodyConstraints.None;
+        }
+
+        private void ChangeAllLayerMasks()
+        {
+            gameObject.layer = 12;
+            Transform[] objectsInChildren = gameObject.GetComponentsInChildren<Transform>();
+            for(int i = 0; i < objectsInChildren.Length; i++)
+            {
+                objectsInChildren[i].gameObject.layer = 12;
+            }
+        }
+
     }
 }
 

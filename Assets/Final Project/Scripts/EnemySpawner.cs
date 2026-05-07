@@ -82,13 +82,14 @@ namespace FinalProject
             if (spawnTimer <= 0)
             {
                 GameObject objEnemy;
+                Vector3 location = RandomLocation();
                 if (enemyOrder[enemiesSpawned].Equals("Flyer"))
                 {
-                    objEnemy = Instantiate(flyerPrefab, RandomLocation(), Quaternion.identity);
+                    objEnemy = Instantiate(flyerPrefab, new Vector3(location.x, location.y + 1, location.z), Quaternion.identity);
                 }
                 else
                 {
-                    objEnemy = Instantiate(walkerPrefab, RandomLocation(), Quaternion.identity);
+                    objEnemy = Instantiate(walkerPrefab, location, Quaternion.identity);
                 }
 
                 enemies.Add(objEnemy.GetComponent<Enemy>());

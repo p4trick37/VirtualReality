@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
@@ -15,10 +16,13 @@ namespace FinalProject
 
         [SerializeField] protected float raycastDistance;
         [SerializeField] protected float raycastRadius;
+        public Enemy EnemyFound => enemyFound;
+        private Enemy enemyFound;
         public bool Dead => dead;
         [SerializeField] protected bool dead = false;
         [SerializeField] private float despawnRate;
         private float despawnTimer;
+        private bool alreadyDead = false;
         [Header("Tool")]
         [SerializeField] protected bool autoKill;
         [SerializeField] private float autoKillRate;
@@ -36,6 +40,11 @@ namespace FinalProject
         [SerializeField] private float timeInterval;
         [Header("Particle System")]
         [SerializeField] private ParticleSystem particle;
+        [Header("ID")]
+        public int ID => id;
+        [SerializeField] private int id;
+        private static int idCounter = 0;
+
 
         protected bool foundEnemy;
 
@@ -46,6 +55,8 @@ namespace FinalProject
             playerCamera = Camera.main;
             player = FindAnyObjectByType<Player>();
             despawnTimer = despawnRate;
+            idCounter++;
+            id = idCounter;
         }
 
         public void TakeDamage(int dmg)
@@ -77,15 +88,25 @@ namespace FinalProject
         {
             if(Physics.SphereCast(transform.position, raycastRadius, transform.forward, out RaycastHit hit, raycastDistance))
             {
-                Enemy enemyFound = hit.transform.GetComponent<Enemy>();
+                enemyFound = hit.transform.GetComponent<Enemy>();
                 if(enemyFound != null && enemyFound != gameObject && enemyFound.Dead == false)
                 {
+                    
+                    if (CheckForDoubleFind())
+                    {
+                        if(enemyFound.ID > id)
+                        {
+                            foundEnemy = false;
+                            return;
+                        }
+                    }
                     foundEnemy = true;
                 } 
             }
             else
             {
                 foundEnemy = false;
+                enemyFound = null;
             }
         }
 
@@ -157,6 +178,23 @@ namespace FinalProject
             if(despawnTimer <= 0)
             {
                 Destroy(gameObject);
+            }
+            if(alreadyDead == false)
+            {
+                UpgradeManager.enemiesKilled++;
+                alreadyDead = true;
+            }
+        }
+
+        private bool CheckForDoubleFind()
+        {
+            if(gameObject.GetComponent<Enemy>() == enemyFound.EnemyFound)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
     }

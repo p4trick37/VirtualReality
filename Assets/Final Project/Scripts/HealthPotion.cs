@@ -64,13 +64,11 @@ namespace FinalProject
 
         public void InBeltState()
         {
-            transform.SetParent(belt.transform);
             inBelt = true;
         }
 
         public void OutBeltState()
         {
-            transform.SetParent(null);
             inBelt = false;
         }
 

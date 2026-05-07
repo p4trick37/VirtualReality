@@ -1,3 +1,4 @@
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -12,10 +13,19 @@ namespace FinalProject
         [SerializeField] private int currentPrice;
         [SerializeField] private int additionalPrice;
         [Header("Swords")]
-        [SerializeField] private GameObject[] swords;
+        [SerializeField] private GameObject[] swordPrefabs;
+        [SerializeField] private GameObject currentSword;
+        [SerializeField] private GameObject nextSword;
+        private GameObject previousSword;
         [SerializeField] private int currentSwordIndex;
         public static int enemiesKilled;
-        
+        [SerializeField] private bool atMaxSword;
+        [Header("Box")]
+        [SerializeField] private GameObject box;
+        [Header("UI")]
+        [SerializeField] private TMP_Text priceText;
+        [SerializeField] private TMP_Text killedBoxText;
+        [SerializeField] private TMP_Text killedWaveText;
 
         private void Awake()
         {
@@ -25,31 +35,57 @@ namespace FinalProject
 
         private void Update()
         {
-            TurnOffAllSwords();
+            if(atMaxSword == true)
+            {
+                Destroy(gameObject);
+                Destroy(box);
+            }
+
+            UpdateUI();
         }
 
-        public void BuySword(GameObject swordGameObject)
+        public void BuySword()
         {
             currentSwordIndex++;
-            Sword sword = swordGameObject.GetComponent<Sword>();
             enemiesKilled -= currentPrice;
             currentPrice += additionalPrice;
+            if (currentSwordIndex == swordPrefabs.Length - 1)
+            {
+                atMaxSword = true;
+            }
+            InstantiateNextSword();
+            DestoryPreviousSword();
+            
         }
 
-        private void TurnOffAllSwords()
+        public void InstantiateNextSword()
         {
-            for(int i = 0; i < swords.Length - 1; i++)
+            // hayden was here
+            previousSword = currentSword;
+            currentSword = nextSword;
+            if (currentSwordIndex == swordPrefabs.Length - 1)
             {
-                if(i == currentSwordIndex)
-                {
-                    swords[i].SetActive(true);
-                    swords[i + 1].SetActive(true);
-                }
-                else
-                {
-                    swords[i] = null;
-                }
+                nextSword = null;
             }
+            else
+            {
+                nextSword = Instantiate(swordPrefabs[currentSwordIndex + 1], transform.position, Quaternion.identity);
+            }
+        }
+        private void DestoryPreviousSword()
+        {
+            if(currentSwordIndex > 0)
+            {
+                Destroy(previousSword);
+            }
+        }
+
+        private void UpdateUI()
+        {
+            priceText.text = "Price: " + currentPrice + " kills";
+            killedBoxText.text = "Current Kills: " + enemiesKilled;
+            killedWaveText.text = "CurrentKills: " + enemiesKilled;
+
         }
     }
 }
